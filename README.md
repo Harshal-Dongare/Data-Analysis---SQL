@@ -1,5 +1,7 @@
 # SQL Learning Journey: Assignments and Exercises  
 
+![](https://cdn.pixabay.com/photo/2023/11/04/10/35/woman-8364633_1280.jpg)
+
 This repository contains my SQL learning journey as I work through assignments and exercises provided by my offline institute. It serves as a collection of solutions that showcase my progress and understanding of SQL concepts, including:  
 
 - **Basic SQL Queries**: SELECT, WHERE, GROUP BY, ORDER BY, etc.  
