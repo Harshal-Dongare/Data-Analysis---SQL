@@ -1,1 +1,8 @@
+What is Data ?
+-> Data is raw facts or information, like numbers or text, that can be collected and used to gain insights or make decisions.
 
+What is Datum?
+-> Datum refers to a single piece of information, like one number, fact, or observation.
+
+What is Information?
+-> Information is processed or oraganized data that is meaningful and useful for decision-making. For examples, raw sales numbers (data) can be analyzed to show trends, which becomes information.
