@@ -109,4 +109,10 @@ Enrollment Table : (Enrollment_ID, Student_ID, Course_ID, Enrollment_Date, Compl
 Assignment Table : (Assignment_ID, Course_ID, Title, Due_Date, Total_Marks);
 
 
+----------------------------------------------------------------------
+|                   	ONLINE LEARNING DATABASE			         |
+----------------------------------------------------------------------
+
+
+
 */
