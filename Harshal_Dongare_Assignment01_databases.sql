@@ -1,7 +1,7 @@
 /*
 
 ----------------------------------------------------------------------
-|                 ONLINE VIDEO GAME STREAMING DATABASE				 |
+|                 ONLINE VIDEO GAME STREAMING DATABASE				       |
 ----------------------------------------------------------------------
 User Table : (User_ID, Username, Email, Date_Joined, Subscription_Type);
 Game Table : (Game_ID, Game_Name, Genre, Release_Date, Developer);
@@ -11,7 +11,7 @@ Chat Table : (Chat_ID, Stream_ID, User_ID, Message, Timestamp);
 
 
 ----------------------------------------------------------------------
-|                 		GROCERY STORE DATABASE				 		 |
+|                 		GROCERY STORE DATABASE				 		             |
 ----------------------------------------------------------------------
 Customer Table : (Customer_ID, Name, Email, Phone_Number, Address);
 Product Table : (Product_ID, Product_Name, Category, Price, Stock_Quantity);
@@ -21,7 +21,7 @@ Payment Table : (Payment_ID, Order_ID, Payment_Method, Payment_Date, Payment_Sta
 
 
 ----------------------------------------------------------------------
-|                 		  	FOOTBALL DATABASE					     |
+|                 		  	FOOTBALL DATABASE					                 |
 ----------------------------------------------------------------------
 Player Table : (Player_ID, Player_Name, Age, Team_ID, Position);
 Team Table : (Team_ID, Team_Name, Coach_Name, City, Stadium, Founded_Year);
@@ -31,7 +31,7 @@ Leagues Table: (League_ID, League_Name, Season, Start_Date, End_Date);
 
 
 ----------------------------------------------------------------------
-|                 		  	WEATHER DATABASE					     |
+|                 		  	WEATHER DATABASE					                 |
 ----------------------------------------------------------------------
 City Table : (City_ID, City_Name, Counrty, Latitude, Longitude);
 Weather_Reports Table : (Report_ID, City_ID, Report_Date, Temperature, Weather_Condition);
@@ -41,7 +41,7 @@ Wind_Speed Table : (Wind_ID, City_ID, Report_Date, Wind_Speed, Wind_Direction);
 
 
 ----------------------------------------------------------------------
-|                   BANKING INSTITUITION DATABASE			         |
+|                   BANKING INSTITUITION DATABASE			               |
 ----------------------------------------------------------------------
 Customer Table : (Customer_ID, Name, Email, Phone, Address);
 Account Table : (Account_ID, Cusomter_ID, Account_Type, Balance, Date_Created);
@@ -51,7 +51,7 @@ Branch Table : (Branch_ID, Branch_Name, Branch_Location, Branch_Manager, Branch_
 
 
 ----------------------------------------------------------------------
-|                   	TOURIST PLACE DATABASE			             |
+|                   	TOURIST PLACE DATABASE			                   |
 ----------------------------------------------------------------------
 Tourist_Place Table : (Place_ID, Place_Name, Loaction, Description, Opening_Hours);
 Categories Table : (Category_ID, Category_Name, Description, Parent_Category_ID);
@@ -61,7 +61,7 @@ Bookings Table: (Booking_ID, User_ID, Place_ID, Booking_Date, Number_of_People);
 
 
 ----------------------------------------------------------------------
-|                   	   LIBRARY DATABASE			                 |
+|                   	   LIBRARY DATABASE			                       |
 ----------------------------------------------------------------------
 Books Table: (Book_ID, Title, Author, Genre, Published_Year);
 Members Table: (Member_ID, Name, Email, Phone, Membership_Date);
@@ -70,7 +70,7 @@ Categories Table: (Category_ID, Category_Name, Description, Parent_Category_ID);
 Staff Table: (Staff_ID, Name, Position, Contact_Info, Hire_Date);
 
 ----------------------------------------------------------------------
-|                   	   MOVIE WEBSITE DATABASE			         |
+|                   	   MOVIE WEBSITE DATABASE			                 |
 ----------------------------------------------------------------------
 Movie Table : (Movie_ID, Movie_Title, Genre, Release_Year, Director);
 Actor Table : (Actor_ID, Actor_Name, Date_Of_Birth, Nationality, Gender);
@@ -80,7 +80,7 @@ Showtimes Table : (Showtime_ID, Movie_ID, Cinema_ID, Showtime_Date, Showtime_Tim
 
 
 ----------------------------------------------------------------------
-|                   	   RESTAURANT DATABASE			             |
+|                   	   RESTAURANT DATABASE			                   |
 ----------------------------------------------------------------------
 Customer Table : (Customer_ID, Name, Phone, Email, Address);
 Menu Table : (Menu_Item_ID, Item_Name, Category, Price, Description);
@@ -90,7 +90,7 @@ Reservation Table : (Reservation_ID, Customer_ID, Reservation_Date, Table_Number
 
 
 ----------------------------------------------------------------------
-|                   	   REAL ESTATE DATABASE			             |
+|                   	   REAL ESTATE DATABASE			                   |
 ----------------------------------------------------------------------
 Property Table : (Property_ID, Property_Name, Property_Type, Location, Price);
 Customer Table : (Customer_ID, Name, Email, Phone, Address);
@@ -100,7 +100,7 @@ Inspection Table : (Inspection_ID, Property_ID, Customer_ID, Inspection_Date, In
 
 
 ----------------------------------------------------------------------
-|                   	ONLINE LEARNING DATABASE			         |
+|                   	ONLINE LEARNING DATABASE			                 |
 ----------------------------------------------------------------------
 Student Table : (Student_ID, Name, Email, Phone, Enrollment_Date);
 Course Table : (Course_ID, Course_Name, Instructor_ID, Duration, Price);
