@@ -200,5 +200,15 @@ House Table : (House_ID, House_Name, Owner_ID, Location);
 Event Table : (Event_ID, Device_ID, Event_Type, Event_Time, Status);
 
 
+----------------------------------------------------------------------
+|                AUTOMOBILE SERVICE CENTER DATABASE                  |
+----------------------------------------------------------------------
+Customer Table : (Customer_ID, Name, Email, Phone, Address);
+Vehicle Table : (Vehicle_ID, Customer_ID, Make, Model, Year, VIN);
+Service Table : (Service_ID, Vehicle_ID, Service_Type, Service_Date, Service_Cost);
+Appointment Table : (Appointment_ID, Customer_ID, Service_ID, Appointment_Date, Status);
+Parts Table : (Part_ID, Service_ID, Part_Name, Part_Price, Quantity_Used);
+Payment Table : (Payment_ID, Appointment_ID, Payment_Method, Payment_Date, Payment_Status);
+
 
 */
