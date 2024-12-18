@@ -210,5 +210,49 @@ Appointment Table : (Appointment_ID, Customer_ID, Service_ID, Appointment_Date, 
 Parts Table : (Part_ID, Service_ID, Part_Name, Part_Price, Quantity_Used);
 Payment Table : (Payment_ID, Appointment_ID, Payment_Method, Payment_Date, Payment_Status);
 
+---------------------------------------------------------------------- 
+|                          MUSIC STREAMING DATABASE                  | 
+---------------------------------------------------------------------- 
+User Table : (User_ID, Username, Email, Join_Date, Subscription_Type); 
+Artist Table : (Artist_ID, Artist_Name, Genre, Country); 
+Album Table : (Album_ID, Album_Name, Artist_ID, Release_Date); 
+Track Table : (Track_ID, Album_ID, Track_Name, Duration, Popularity); 
+Playlist Table : (Playlist_ID, User_ID, Playlist_Name, Creation_Date); 
+
+---------------------------------------------------------------------- 
+|                          ONLINE EDUCATION DATABASE                 | 
+---------------------------------------------------------------------- 
+Student Table : (Student_ID, Name, Email, Phone, Registration_Date); 
+Course Table : (Course_ID, Course_Name, Instructor_ID, Duration, Price); 
+Instructor Table : (Instructor_ID, Name, Specialty, Email, Phone); 
+Class Table : (Class_ID, Course_ID, Start_Date, End_Date, Class_Time); 
+Assignment Table : (Assignment_ID, Class_ID, Title, Due_Date, Total_Marks); 
+
+---------------------------------------------------------------------- 
+|                          PET CARE DATABASE                         | 
+---------------------------------------------------------------------- 
+Owner Table : (Owner_ID, Name, Phone, Email, Address); 
+Pet Table : (Pet_ID, Owner_ID, Pet_Name, Breed, Age, Medical_History); 
+Appointment Table : (Appointment_ID, Pet_ID, Vet_ID, Appointment_Date, Purpose); 
+Vet Table : (Vet_ID, Name, Specialty, Phone, Email, Clinic_Address); 
+Treatment Table : (Treatment_ID, Appointment_ID, Diagnosis, Treatment, Cost); 
+
+---------------------------------------------------------------------- 
+|                          SOCIAL MEDIA DATABASE                     | 
+---------------------------------------------------------------------- 
+User Table : (User_ID, Name, Email, Phone, Registration_Date); 
+Post Table : (Post_ID, User_ID, Content, Post_Date, Likes_Count); 
+Comment Table : (Comment_ID, Post_ID, User_ID, Comment_Text, Comment_Date); 
+Follow Table : (Follow_ID, Follower_ID, Followed_ID, Follow_Date); 
+Message Table : (Message_ID, Sender_ID, Receiver_ID, Message_Text, Timestamp); 
+
+---------------------------------------------------------------------- 
+|                          ONLINE TRAVEL DATABASE                    | 
+---------------------------------------------------------------------- 
+Traveler Table : (Traveler_ID, Name, Email, Phone, Registration_Date); 
+Destination Table : (Destination_ID, Name, Location, Category, Popularity); 
+Package Table : (Package_ID, Destination_ID, Package_Name, Price, Duration); 
+Booking Table : (Booking_ID, Traveler_ID, Package_ID, Booking_Date, Status); 
+Review Table : (Review_ID, Traveler_ID, Destination_ID, Rating, Review_Text); 
 
 */
