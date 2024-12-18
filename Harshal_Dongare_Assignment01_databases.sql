@@ -255,4 +255,50 @@ Package Table : (Package_ID, Destination_ID, Package_Name, Price, Duration);
 Booking Table : (Booking_ID, Traveler_ID, Package_ID, Booking_Date, Status); 
 Review Table : (Review_ID, Traveler_ID, Destination_ID, Rating, Review_Text); 
 
+
+---------------------------------------------------------------------- 
+|                          E-LEARNING DATABASE                       | 
+---------------------------------------------------------------------- 
+Student Table : (Student_ID, Name, Email, Phone, Enrollment_Date); 
+Course Table : (Course_ID, Title, Instructor_ID, Duration, Fee); 
+Lesson Table : (Lesson_ID, Course_ID, Title, Content_Type, Duration); 
+Quiz Table : (Quiz_ID, Lesson_ID, Title, Total_Marks, Pass_Marks); 
+Result Table : (Result_ID, Quiz_ID, Student_ID, Score, Status); 
+
+---------------------------------------------------------------------- 
+|                          FOOD DELIVERY DATABASE                    | 
+---------------------------------------------------------------------- 
+Customer Table : (Customer_ID, Name, Phone, Address, Registration_Date); 
+Restaurant Table : (Restaurant_ID, Name, Address, Rating, Contact_Info); 
+Menu Table : (Menu_Item_ID, Restaurant_ID, Item_Name, Price, Availability); 
+Order Table : (Order_ID, Customer_ID, Restaurant_ID, Order_Date, Total_Amount); 
+Delivery Table : (Delivery_ID, Order_ID, Delivery_Person, Delivery_Status, ETA); 
+
+---------------------------------------------------------------------- 
+|                          INSURANCE DATABASE                        | 
+---------------------------------------------------------------------- 
+PolicyHolder Table : (Holder_ID, Name, Email, Phone, Address); 
+Policy Table : (Policy_ID, Holder_ID, Policy_Type, Start_Date, End_Date, Premium); 
+Claim Table : (Claim_ID, Policy_ID, Claim_Date, Claim_Type, Claim_Status); 
+Agent Table : (Agent_ID, Name, Email, Phone, Assigned_Policy_IDs); 
+Payment Table : (Payment_ID, Policy_ID, Payment_Date, Amount, Payment_Status); 
+
+---------------------------------------------------------------------- 
+|                          EMPLOYEE DATABASE                         | 
+---------------------------------------------------------------------- 
+Employee Table : (Employee_ID, Name, Email, Phone, Hire_Date, Position); 
+Department Table : (Department_ID, Name, Manager_ID, Location); 
+Project Table : (Project_ID, Name, Department_ID, Start_Date, End_Date); 
+Task Table : (Task_ID, Project_ID, Employee_ID, Task_Name, Status); 
+Salary Table : (Salary_ID, Employee_ID, Basic_Salary, Bonuses, Deductions, Net_Salary); 
+
+---------------------------------------------------------------------- 
+|                          SPORTS TOURNAMENT DATABASE                | 
+---------------------------------------------------------------------- 
+Player Table : (Player_ID, Name, Age, Team_ID, Position); 
+Team Table : (Team_ID, Name, Coach, Founded_Date, Home_Ground); 
+Tournament Table : (Tournament_ID, Name, Start_Date, End_Date, Location); 
+Match Table : (Match_ID, Tournament_ID, Team1_ID, Team2_ID, Match_Date, Result); 
+Statistics Table : (Stat_ID, Match_ID, Player_ID, Goals, Assists, Yellow_Cards); 
+
 */
