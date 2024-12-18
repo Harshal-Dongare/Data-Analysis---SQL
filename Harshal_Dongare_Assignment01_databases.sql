@@ -278,7 +278,6 @@ CREATE TABLE orders (
     Order_Date DATE NOT NULL,
     Total_Amount INT NOT NULL,
     Order_Status VARCHAR(20) NOT NULL,
-    FOREIGN KEY (Customer_ID) REFERENCES customer(Customer_ID)
 );
 
 -- Insert data into Order Table
@@ -310,8 +309,6 @@ CREATE TABLE order_items (
     Product_ID INT NOT NULL,
     Quantity INT NOT NULL,
     Item_Price INT NOT NULL,
-    FOREIGN KEY (Order_ID) REFERENCES orders(Order_ID),
-    FOREIGN KEY (Product_ID) REFERENCES product(Product_ID)
 );
 
 -- Insert data into Order_Items Table
@@ -342,7 +339,6 @@ CREATE TABLE payment (
     Payment_Method VARCHAR(20) NOT NULL,
     Payment_Date DATE NOT NULL,
     Payment_Status VARCHAR(20) NOT NULL,
-    FOREIGN KEY (Order_ID) REFERENCES orders(Order_ID)
 );
 
 -- Insert data into Payment Table
