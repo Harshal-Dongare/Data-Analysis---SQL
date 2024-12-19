@@ -232,6 +232,12 @@ VALUES
 (9, 'Nikhil Gupta', 'nikhil.gupta@example.com', 8098765432, '100 Ganga Nagar, Pune, Maharashtra'),
 (10, 'Pooja Chatterjee', 'pooja.chatterjee@example.com', 7654321098, '78 Salt Lake, Kolkata, West Bengal');
 
+-- delete rows and columns from table Customer
+TRUNCATE TABLE customer;
+
+-- delete entire table from database
+DROP TABLE customer
+
 -- View data in Customer Table
 SELECT * FROM customer;
 
