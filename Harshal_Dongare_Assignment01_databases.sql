@@ -236,7 +236,7 @@ VALUES
 TRUNCATE TABLE customer;
 
 -- delete entire table from database
-DROP TABLE customer
+DROP customer
 
 -- View data in Customer Table
 SELECT * FROM customer;
