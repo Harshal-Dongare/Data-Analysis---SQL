@@ -8,7 +8,8 @@ This repository contains my SQL learning journey as I work through assignments a
 - **Joins and Subqueries**: INNER JOIN, LEFT JOIN, and nested queries.  
 - **Data Manipulation**: INSERT, UPDATE, DELETE statements.  
 - **Database Design**: Creating and managing tables, constraints, and relationships.  
-- **Advanced SQL**: Window functions, CTEs, and performance optimization techniques.  
+- **Advanced SQL**: Window functions, CTEs, and performance optimization techniques.
+- **Projects**: SQL Practice projects
 
 This repository is a work in progress, and I will keep updating it with new solutions and learnings as I advance in the course.  
 
