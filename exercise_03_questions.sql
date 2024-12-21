@@ -96,3 +96,53 @@ name VARCHAR(100) NOT NULL    -- Name cannot be NULL
 -- -----------------------------------------------------------------------------------------
 -- -----------------------------------------------------------------------------------------
 
+/*
+Write a SQL query to find all books published after January 1, 2020.
+*/
+
+SELECT * FROM books WHERE published_date > '2020-01-01';
+
+-- -----------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------
+
+/*
+Explain the purpose of the FOREIGN KEY constraint.
+-> The FOREIGN KEY is used to established a relationship between two tables by ensuring that
+   a column in another table must be a PRIMARY KEY, maintaing the relationship between two tables.
+   
+   Purpose:
+   - Keep the data consistent across the related tables.
+   - Prevents adding invalid data.
+*/
+
+CREATE TABLE books(
+     book_id INT PRIMARY KEY,
+     title VARCHAR(100),
+     author_id INT,
+     FOREIGN KEY (author_id) REFERENCES authors(author_id)
+);
+
+-- -----------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------
+
+/*
+Write a SQL query to count the number of books in the Books table.
+*/
+
+SELECT COUNT(*) AS number_of_books FROM books;
+
+-- -----------------------------------------------------------------------------------------
+-- -----------------------------------------------------------------------------------------
+
+/*
+What is the purpose of the CHECK constraint? Provide an example.
+-> The CHECK constraints is used to make sure that the data in a column meets a specific condition.
+   It ensures that only valid data is entered into the table.
+*/
+
+CREATE TABLE employees(
+    employee_id INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    age INT NOT NULL,
+    CHECK (age >= 18)  -- Only allows age 18 or above
+);
