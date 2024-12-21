@@ -466,6 +466,10 @@ VALUES ('Private Car', 'A comfortable private car for airport transfers and loca
 ('Rickshaw Ride', 'Experience the local culture with a rickshaw ride through the city.', 'Kolkata', 5);  -- Transportation 5
 
 
+-- ----------------------------------------------------------------
+--                        Table 17: ACCOMMODATION                 |
+-- ----------------------------------------------------------------
+
 
 -- Create the accommodations table
 CREATE TABLE accommodations (
