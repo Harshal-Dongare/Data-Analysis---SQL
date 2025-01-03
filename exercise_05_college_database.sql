@@ -30,6 +30,7 @@ VALUES ('1', 'Computer Science', 'Dr. Aditi Joshi', '2025-08-01', '60000.00', 'M
 
 SELECT * FROM departments;
 
+
 -- Table 2
 
 CREATE TABLE faculty(
@@ -149,4 +150,87 @@ VALUES(1, 1, 1, 'Mathematics', 85, '2023-05-15'), -- Student 1
 (9, 1, 52000.00, '2023-08-30', 'Bank Transfer'),    
 (10, 2, 55000.00, '2023-08-30', 'Cash');
 
-SELECT * FROM salary;          
+SELECT * FROM salary;
+
+
+-- DELETE and UPDATE operation
+
+-- Delete a department with department_id = 1
+DELETE FROM departments 
+WHERE department_id = 1;
+
+-- Check the faculty and students tables to see the effects
+SELECT * FROM faculty;
+SELECT * FROM students;
+
+-- Delete a faculty member with faculty_id = 1
+DELETE FROM faculty
+WHERE faculty_id = 1;
+
+-- Check the SALARY table to see if the salary record for faculty_id = 1 is deleted
+SELECT * FROM salary;
+
+-- Check the MARKS table to see the effects
+SELECT * FROM marks;
+
+-- Update a department_id from 2 to 20
+UPDATE departments
+SET department_id = 20
+WHERE department_id = 2;
+
+-- Check the FACULTY and STUDENTS tables to see the effects
+SELECT * FROM faculty;
+SELECT * FROM students;
+
+-- Update a faculty_id from 3 to 30
+UPDATE faculty
+SET faculty_id = 30
+WHERE faculty_id = 3;
+
+-- Check the MARKS and SALARY tables to see the effects
+SELECT * FROM marks;
+SELECT * FROM salary;
+
+-- ADD and DROP constraints on existing tables
+
+-- Adding a FOREIGN KEY Constraint to the MARKS table
+ALTER TABLE marks
+ADD CONSTRAINT fk_student
+FOREIGN KEY (student_id) REFERENCES students(student_id)
+	ON DELETE CASCADE
+    ON UPDATE CASCADE;
+    
+-- Adding a UNIQUE Constraint to the FACULTY table on email
+ALTER TABLE faculty
+ADD CONSTRAINT uq_faculty_email UNIQUE (email);
+
+-- Show INDEXES on table
+SHOW INDEX FROM faculty;
+
+--  Adding a Check Constraint to the SALARY table to ensure salary_amount is positive
+ALTER TABLE salary
+ADD CONSTRAINT chk_salary_amount CHECK (salary_amount > 0);
+
+-- Dropping a FOREIGN KEY Constraint from the MARKS table
+ALTER TABLE marks
+DROP FOREIGN KEY fk_student;
+
+-- Dropping a UNIQUE Constraint from the FACULTY table
+ALTER TABLE faculty
+DROP INDEX uq_faculty_email;
+
+-- Remove duplicate index (Alternative command for above query)
+DROP INDEX uq_faculty_email ON faculty;
+
+-- Dropping a CHECK Constraint from the SALARY table
+ALTER TABLE salary
+DROP CHECK chk_salary_amount;
+
+-- ERROR in the query
+-- Adding a new CHECK Constraint to the STUDENTS table to ensure age is valid 
+ALTER TABLE students
+ADD CONSTRAINT chk_age CHECK (YEAR(CURDATE()) - YEAR(date_of_birth) >= 0);
+
+-- Dropping the CHECK Constraint from the STUDENTS table
+ALTER TABLE students
+DROP CHECK chk_age;
