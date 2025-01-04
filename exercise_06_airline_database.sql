@@ -236,8 +236,6 @@ RENAME TO flights_schedules;
 -- 						ADD and DROP Query 						|
 -- --------------------------------------------------------------
 
-SELECT * FROM flights;
-
 -- Add a CHECK constraint to ensure flight_duration is positive
 ALTER TABLE flights_schedules
 ADD CONSTRAINT chk_flight_duration CHECK (flight_duration > 0);
@@ -289,5 +287,48 @@ ADD CONSTRAINT uq_aircraft_type UNIQUE (aircraft_type);
 -- Drop the UNIQUE Constraint on aircraft_type
 ALTER TABLE flights_schedules
 DROP CONSTRAINT uq_aircraft_type;
+
+-- --------------------------------------------------------------
+-- 							WHERE Query 						|
+-- --------------------------------------------------------------
+
+SELECT * FROM flights_schedules;
+
+-- Select flights that are delayed
+SELECT * FROM flights_schedules WHERE status = 'Delayed';
+
+-- Select flights departing from Delhi
+SELECT * FROM flights_schedules WHERE departure_airport = "Delhi (DEL)";
+
+-- Select flights arriving in Mumbai
+SELECT * FROM flights_schedules WHERE destination_airport = "Mumbai (BOM)";
+
+-- Select flights with a duration greater than 120 minutes
+SELECT * FROM flights_schedules WHERE flight_duration > 120;
+
+-- Select flights with available seats less than 30
+SELECT * FROM flights_schedules WHERE seats_available < 30;
+
+-- Select flights that departed after a specific date
+SELECT * FROM flights_schedules WHERE departure_time > '2023-10-01 00:00:00';
+
+-- Select flights with a specific flight number
+SELECT * FROM flights_schedules WHERE flight_number = 'AI101';
+
+-- Select flights that are either cancelled or delayed
+SELECT * FROM flights_schedules WHERE status IN ('Delayed', 'Cancelled');
+
+-- Select flights with a flight duration between 90 and 150 minutes
+SELECT * FROM flights_schedules WHERE flight_duration BETWEEN 90 AND 150;
+
+-- Select flights with more than 50 available seats
+SELECT * FROM flights_schedules WHERE seats_available > 50;
+
+
+
+
+
+
+
 
 
