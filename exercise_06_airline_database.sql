@@ -393,7 +393,39 @@ SELECT departure_airport, destination_airport FROM flights_schedules;
  SELECT * FROM flights_schedules WHERE flight_duration = 120;
 
 
+-- --------------------------------------------------------------
+-- 							ORDER Query 						|
+-- --------------------------------------------------------------
 
+-- Select all flights ordered by Departure_Time
+SELECT * FROM flights_schedules ORDER BY departure_time;
+
+-- Select all flights ordered by Flight_Duration in descending order
+SELECT * FROM flights_schedules ORDER BY flight_duration DESC;
+
+-- Select all flights ordered by Seats_Available
+SELECT * FROM flights_schedules ORDER BY seats_available;
+
+-- Select all flights ordered by Status and then by Departure_Time
+SELECT * FROM flights_schedules ORDER BY status, departure_time;
+
+-- Select all flights ordered by Arrival_Airport
+SELECT * FROM flights_schedules ORDER BY departure_airport;
+
+-- Select all flights ordered by Flight_Number in descending order
+SELECT * FROM flights_schedules ORDER BY flight_number DESC;
+
+-- Select all flights ordered by Departure_Airport and then by Flight_Duration
+SELECT * FROM flights_schedules ORDER BY departure_airport, flight_duration;
+
+-- Select all flights ordered by Arrival_Time in descending order
+SELECT * FROM flights_schedules ORDER BY arrival_time DESC;
+
+-- Select all flights ordered by Flight_ID
+SELECT * FROM flights_schedules ORDER BY flight_id;
+
+-- Select all flights ordered by Arrival_Time
+SELECT * FROM flights_schedules ORDER BY arrival_time;
 
 
 
