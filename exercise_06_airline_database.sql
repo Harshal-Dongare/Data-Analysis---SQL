@@ -428,6 +428,39 @@ SELECT * FROM flights_schedules ORDER BY flight_id;
 SELECT * FROM flights_schedules ORDER BY arrival_time;
 
 
+-- --------------------------------------------------------------
+-- 							GROUP BY Query 						|
+-- --------------------------------------------------------------
+
+-- Count flights grouped by status
+SELECT status, COUNT(*) AS number_of_flights FROM flights_schedules GROUP BY status;
+
+-- Group flights by Departure_Airport and count them
+SELECT departure_airport, COUNT(*) AS number_of_flights FROM flights_schedules GROUP BY departure_airport;
+
+-- Group flights by Arrival_Airport and count them
+SELECT destination_airport, COUNT(*) FROM flights_schedules GROUP BY destination_airport;
+
+-- Group flights by Aircraft_Type and calculate average duration
+SELECT aircraft_type, AVG(flight_duration) FROM flights_schedules GROUP BY aircraft_type;
+
+-- Group flights by Flight_Number and count them
+SELECT flight_number, COUNT(*) FROM flights_schedules GROUP BY flight_number;
+
+-- Group flights by Departure_Airport and calculate total available seats
+SELECT departure_airport, SUM(seats_available) AS total_seats FROM flights_schedules GROUP BY departure_airport;
+
+-- Group flights by Status and calculate maximum duration
+SELECT status, MAX(flight_duration) FROM flights_schedules GROUP BY status;
+
+-- Group flights by Arrival_Airport and calculate minimum duration
+SELECT destination_airport, MIN(flight_duration) AS min_duration FROM flights_schedules GROUP BY destination_airport;
+
+-- Group flights by Departure_Airport and calculate average available seats
+SELECT departure_airport, AVG(seats_available) FROM flights_schedules GROUP BY departure_airport;
+
+-- Group flights by Aircraft_Type and count distinct statuses
+SELECT aircraft_type, COUNT(DISTINCT status) FROM flights_schedules GROUP BY aircraft_type;
 
 
 
