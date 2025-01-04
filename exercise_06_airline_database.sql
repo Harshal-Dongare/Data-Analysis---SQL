@@ -526,3 +526,72 @@ SELECT destination_airport, AVG(flight_duration)
 FROM flights_schedules
 GROUP BY destination_airport
 HAVING AVG(flight_duration) > 100;
+
+
+-- --------------------------------------------------------------
+-- 							LIMIT Query		 					|
+-- --------------------------------------------------------------
+
+-- Select the first 5 flights
+SELECT * FROM flights_schedules LIMIT 5;
+
+-- Select the first 10 flights ordered by Departure_Time
+SELECT * FROM flights_schedules ORDER BY departure_time LIMIT 10;
+
+-- Select the last 3 flights based on Flight_ID
+SELECT * FROM flights_schedules WHERE flight_id = 3 LIMIT 3;
+
+-- Select the first 7 flights that are delayed
+SELECT * FROM flights_schedules WHERE status = 'Delayed' LIMIT 7;
+
+-- Select the first 5 flights departing from Delhi
+SELECT * FROM flights_schedules WHERE departure_airport = 'Delhi (DEL)' LIMIT 5;
+
+-- Select the first 10 flights with available seats greater than 50
+SELECT * FROM flights_schedules WHERE seats_available > 50;
+
+-- Select the first 5 flights arriving in Mumbai
+SELECT * FROM flights_schedules WHERE destination_airport = 'Mumbai (BOM)' LIMIT 5;
+
+-- Select the first 10 flights with a flight duration greater than 120 minutes
+SELECT * FROM flights_schedules WHERE flight_duration > 120 LIMIT 10;
+
+-- Select the first 5 flights ordered by Flight_Number
+SELECT * FROM flights_schedules ORDER BY flight_number LIMIT 5;
+
+-- Select the first 3 flights that departed after a specific date
+SELECT * FROM flights_schedules WHERE departure_time > '2023-10-01 00:00:00' LIMIT 3;
+
+-- Select 5 flights starting from the 10th record (OFFSET)
+SELECT * FROM flights_schedules LIMIT 5 OFFSET 10;
+
+-- Select 10 flights starting from the 20th record
+SELECT * FROM flights_schedules LIMIT 10 OFFSET 20;
+
+-- Select 3 flights starting from the 5th record
+SELECT * FROM flights_schedules LIMIT 3 OFFSET 5;
+
+-- Select 7 flights starting from the 15th record
+SELECT * FROM flights_schedules LIMIT 7 OFFSET 15;
+
+-- Select 4 flights starting from the 0th record (first record)
+SELECT * FROM flights_schedules LIMIT 4 OFFSET 0;
+
+-- Select 5 flights starting from the 10th record
+SELECT * FROM flights_schedules LIMIT 10, 5;				-- This means skip 10 records and then return the next 5
+
+-- Select 10 flights starting from the 20th record
+SELECT * FROM flights_schedules LIMIT 20, 10;  				-- Skip 20 records and return the next 10
+
+-- Select 3 flights starting from the 5th record
+SELECT * FROM flights_schedules LIMIT 5, 3;  				-- Skip 5 records and return the next 3
+
+-- Select 7 flights starting from the 15th record
+SELECT * FROM flights_schedules LIMIT 15, 7;				-- Skip 15 records and return the next 7
+
+-- Select 4 flights starting from the 0th record (first record)
+SELECT * FROM flights_schedules LIMIT 0, 4;  				-- Skip 0 records and return the first 4
+
+-- Get the total number of flights and limit the results  [Tricky]
+SELECT SQL_CALC_FOUND_ROWS * FROM flights_schedules LIMIT 5; 	
+SELECT FOUND_ROWS();			
