@@ -54,3 +54,48 @@ VALUES(1, 'AI101', 'Delhi (DEL)', 'Mumbai (BOM)', '2023-10-01 06:00:00', '2023-1
 -- SELECT all records from FLIGHTS table
 SELECT * FROM flights;
 
+-- Select flights that are delayed
+SELECT * FROM flights 
+WHERE status = 'Delayed';
+
+-- Select DISTINCT aircraft types used in flights
+SELECT DISTINCT aircraft_type FROM flights;
+
+-- Select all flights ordered by Departure_Time
+SELECT * FROM flights 
+ORDER BY departure_time;
+
+-- Count the number of flights per status
+SELECT status, COUNT(*) AS number_of_flights 
+FROM flights 
+GROUP BY status;
+
+-- Select statuses with more than 5 flights
+SELECT status, COUNT(*) AS number_of_flights 
+FROM flights 
+GROUP BY status 
+HAVING COUNT(*) > 5;
+
+-- Select flights from a Specific Departure Airport
+SELECT * FROM flights
+WHERE departure_airport = 'Delhi (Del)';
+
+-- Select flights with More Than 50 Seats Available
+SELECT * FROM flights
+WHERE seats_available > 50;
+
+-- Select flights ORDERED BY Arrival Time
+SELECT * FROM flights
+ORDER BY arrival_time;
+
+-- Select flights with a Duration Greater Than 120 Minutes
+SELECT * FROM flights
+WHERE flight_duration > 120;
+
+-- Select flights with Arrival Time After a Specific Date
+SELECT * FROM flights
+WHERE arrival_time > '2023-10-01 12:00:00';
+
+-- Select flights with a Specific Flight Number
+SELECT * FROM flights
+WHERE flight_number = 'AI101';
