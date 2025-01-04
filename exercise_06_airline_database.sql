@@ -463,4 +463,66 @@ SELECT departure_airport, AVG(seats_available) FROM flights_schedules GROUP BY d
 SELECT aircraft_type, COUNT(DISTINCT status) FROM flights_schedules GROUP BY aircraft_type;
 
 
+-- --------------------------------------------------------------
+-- 							HAVING BY Query 					|
+-- --------------------------------------------------------------
 
+-- Select statuses with more than 5 flights
+SELECT status, COUNT(*) AS number_of_flights
+FROM flights_schedules
+GROUP BY status
+HAVING COUNT(*) > 5;
+
+-- Select departure airports with more than 3 flights
+SELECT departure_airport, COUNT(*) AS number_of_flights
+FROM flights_schedules  
+GROUP BY departure_airport
+HAVING COUNT(*) > 3;
+
+-- Select aircraft types with an average flight duration greater than 120 minutes
+SELECT aircraft_type, avg(flight_duration)
+FROM flights_schedules
+GROUP BY aircraft_type
+HAVING AVG(Flight_Duration) > 120;
+
+-- Select arrival airports with less than 2 flights
+SELECT destination_airport, COUNT(*) AS number_of_flights 
+FROM flights_schedules
+GROUP BY destination_airport
+HAVING COUNT(*) < 2;
+
+-- Select statuses with a total of available seats greater than 200
+SELECT status, SUM(seats_available) 
+FROM flights_schedules
+GROUP BY status
+HAVING SUM(seats_available) > 200;
+
+-- Select flight numbers with more than 1 occurrence
+SELECT flight_number, COUNT(*)
+FROM flights_schedules
+GROUP BY flight_number
+HAVING COUNT(*) > 1;
+
+-- Select departure airports with an average available seat count less than 50
+SELECT departure_airport, AVG(seats_available) 
+FROM flights_schedules
+GROUP BY departure_airport
+HAVING AVG(seats_available) < 50;
+
+-- Select aircraft types with a maximum flight duration of less than 150 minutes
+SELECT aircraft_type, MAX(flight_duration)
+FROM flights_schedules
+GROUP BY aircraft_type
+HAVING MAX(flight_duration) < 150;
+
+-- Select statuses with a count of flights equal to 1
+SELECT status, COUNT(*) AS number_of_flights
+FROM flights_schedules
+GROUP BY status
+HAVING COUNT(*) = 1;
+
+-- Select arrival airports with an average flight duration greater than 100 minutes
+SELECT destination_airport, AVG(flight_duration)
+FROM flights_schedules
+GROUP BY destination_airport
+HAVING AVG(flight_duration) > 100;
