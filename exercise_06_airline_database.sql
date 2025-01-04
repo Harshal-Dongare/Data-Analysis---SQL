@@ -159,8 +159,6 @@ WHERE arrival_airport = 'Mumbai (BOM)';
 -- 						DELETE Query 							|
 -- --------------------------------------------------------------
 
-SELECT * FROM flights;
-
 -- Delete a specific flight
 DELETE FROM flights
 WHERE flight_id = 2;
@@ -200,4 +198,40 @@ WHERE aircraft_type = 'Airbus A320';
 -- Delete All Flights with Less Than 30 Seats Available
 DELETE FROM flights
 WHERE seats_available < 30;
+
+
+-- --------------------------------------------------------------
+-- 						ALTER Query 							|
+-- --------------------------------------------------------------
+
+SELECT * FROM flights;
+
+-- Add a new column for flight's terminal
+ALTER TABLE flights
+ADD COLUMN terminal VARCHAR(10);
+
+-- Drop the terminal column from flights table
+ALTER TABLE flights
+DROP COLUMN terminal;
+
+-- Add a New Column for flight's Airline
+ALTER TABLE flights
+ADD COLUMN airline VARCHAR(50);
+
+-- Change the Data Type of flight_number
+ALTER TABLE flights
+MODIFY flight_number VARCHAR(15);
+
+-- Rename the arrival_airport Column
+ALTER TABLE flights
+RENAME COLUMN arrival_airport TO destination_airport;
+
+-- Add a DEFAULT Value for seats_available [tricky]
+ALTER TABLE flights
+ALTER seats_available SET DEFAULT 100;
+
+-- Rename the flights Table
+ALTER TABLE flights
+RENAME TO flights_schedules;
+
 
