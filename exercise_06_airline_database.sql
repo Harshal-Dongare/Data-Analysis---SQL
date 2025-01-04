@@ -204,8 +204,6 @@ WHERE seats_available < 30;
 -- 						ALTER Query 							|
 -- --------------------------------------------------------------
 
-SELECT * FROM flights;
-
 -- Add a new column for flight's terminal
 ALTER TABLE flights
 ADD COLUMN terminal VARCHAR(10);
@@ -233,5 +231,63 @@ ALTER seats_available SET DEFAULT 100;
 -- Rename the flights Table
 ALTER TABLE flights
 RENAME TO flights_schedules;
+
+-- --------------------------------------------------------------
+-- 						ADD and DROP Query 						|
+-- --------------------------------------------------------------
+
+SELECT * FROM flights;
+
+-- Add a CHECK constraint to ensure flight_duration is positive
+ALTER TABLE flights_schedules
+ADD CONSTRAINT chk_flight_duration CHECK (flight_duration > 0);
+
+-- Drop the CHECK constraint on flight_duration
+ALTER TABLE flights_schedules
+DROP CONSTRAINT chk_flight_duration;
+
+-- Add a UNIQUE Constraint on flight_number
+ALTER TABLE flights_schedules
+ADD CONSTRAINT uq_flight_number UNIQUE (flight_number);
+
+-- Add a CHECK Constraint for Seats Available
+ALTER TABLE flights_schedules
+ADD CONSTRAINT chk_seats_available CHECK (seats_available >= 0);
+
+-- Drop the CHECK Constraint on Seats Available
+ALTER TABLE flights_schedules
+DROP CONSTRAINT chk_seats_available;
+
+-- Add a FOREIGN KEY Constraint (if applicable)
+ALTER TABLE flights_schedules
+ADD CONSTRAINT fk_airport FOREIGN KEY (departure_airport) REFERENCES airports(airport_name);
+
+-- Drop the FOREIGN KEY Constraint
+ALTER TABLE flights_schedules
+DROP CONSTRAINT fk_airport;
+
+-- Add a NOT NULL Constraint to flight_number
+ALTER TABLE flights_schedules
+MODIFY flight_number VARCHAR(10) NOT NULL;
+
+-- Drop the NOT NULL Constraint from flight_number
+ALTER TABLE flights_schedules
+MODIFY flight_number VARCHAR(10);
+
+-- Add a DEFAULT Constraint for status
+ALTER TABLE flights_schedules
+ALTER status SET DEFAULT 'On Time';
+
+-- Drop the DEFAULT Constraint for Status
+ALTER TABLE flights_schedules
+ALTER COLUMN status DROP DEFAULT;
+
+-- Add a UNIQUE Constraint on aircraft_type 
+ALTER TABLE flights_schedules
+ADD CONSTRAINT uq_aircraft_type UNIQUE (aircraft_type);
+
+-- Drop the UNIQUE Constraint on aircraft_type
+ALTER TABLE flights_schedules
+DROP CONSTRAINT uq_aircraft_type;
 
 
