@@ -292,8 +292,6 @@ DROP CONSTRAINT uq_aircraft_type;
 -- 							WHERE Query 						|
 -- --------------------------------------------------------------
 
-SELECT * FROM flights_schedules;
-
 -- Select flights that are delayed
 SELECT * FROM flights_schedules WHERE status = 'Delayed';
 
@@ -358,6 +356,46 @@ SELECT DISTINCT arrival_time FROM flights_schedules;
 
 -- Select distinct seat availability counts
 SELECT DISTINCT seats_available FROM flights_schedules;
+
+
+-- --------------------------------------------------------------
+-- 							FROM Query 							|
+-- --------------------------------------------------------------
+
+-- Select all records from Flights table
+SELECT * FROM flights_schedules;
+
+-- Select flight numbers and statuses from Flights table
+SELECT flight_number, status FROM flights_schedules;
+
+-- Select departure and arrival airports from Flights table
+SELECT departure_airport, destination_airport FROM flights_schedules;
+
+-- Select flight id and duration from Flights table
+ SELECT flight_id, flight_duration FROM flights_schedules;
+ 
+ -- Select all columns from Flights table where status is 'On Time'
+ SELECT * FROM flights_schedules WHERE status = 'On Time';
+ 
+ -- Select all flights with a specific aircraft type
+ SELECT * FROM flights_schedules WHERE aircraft_type = 'Boeing 737';
+ 
+ -- Select all flights departing after a specific time
+ SELECT * FROM flights_schedules WHERE departure_time > '2023-10-01 12:00:00';
+ 
+ -- Select all flights arriving in a specific city
+ SELECT * FROM flights_schedules WHERE destination_airport = 'Chennai (MAA)';
+ 
+ -- Select all flights with available seats greater than 40
+ SELECT * FROM flights_schedules WHERE seats_available > 40;
+ 
+ -- Select all flights with a specific flight duration
+ SELECT * FROM flights_schedules WHERE flight_duration = 120;
+
+
+
+
+
 
 
 
