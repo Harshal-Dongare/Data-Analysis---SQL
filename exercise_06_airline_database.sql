@@ -99,3 +99,57 @@ WHERE arrival_time > '2023-10-01 12:00:00';
 -- Select flights with a Specific Flight Number
 SELECT * FROM flights
 WHERE flight_number = 'AI101';
+
+-- --------------------------------------------------------------
+-- 						UPDATE Query 							|
+-- --------------------------------------------------------------
+
+-- Update the number of available seats for a specific flight
+UPDATE flights
+SET seats_available = 45
+WHERE flight_id = 1;
+
+-- Update the Status of a flight
+UPDATE flights
+SET status = 'Cancelled'
+WHERE flight_id = 1;
+
+-- Update the Arrival Airport for a Specific flight
+UPDATE flights
+SET arrival_airport = 'Chennai (MAA)'
+WHERE flight_id = 3;
+
+-- Update the Flight Duration for a Specific flight
+UPDATE flights
+SET flight_duration = 130
+WHERE flight_id = 4;
+
+-- Update the Aircraft Type for a Specific flight
+UPDATE flights
+SET aircraft_type = 'Boeing 777'
+WHERE flight_id = 5;
+
+-- Update the Departure Time for a Specific flight
+UPDATE flights
+SET departure_time = '2023-10-01 07:00:00'
+WHERE flight_id = 6;
+
+-- Update Multiple Fields for a Specific flight
+UPDATE flights
+SET seats_available = 60, status = 'On Time'
+WHERE flight_id = 7;
+
+-- Update Status for All Delayed flights
+UPDATE flights
+SET status = 'On Time'
+WHERE status = 'Delayed';
+
+-- Update the Flight Number for a Specific flight
+UPDATE flights
+SET flight_number = 'AI201'
+WHERE flight_id = 8;
+
+-- Update the Departure Airport for Multiple flights
+UPDATE flights
+SET departure_airport = 'Delhi (DEL)'
+WHERE arrival_airport = 'Mumbai (BOM)';
