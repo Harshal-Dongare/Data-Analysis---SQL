@@ -563,9 +563,146 @@ SELECT SQL_CALC_FOUND_ROWS * FROM flights LIMIT 5;
 SELECT FOUND_ROWS();
 
 
+-- ------------------------------------------------------------------------------
+-- 							Table 2 : PASSENGERS								|
+-- ------------------------------------------------------------------------------
 
 
+-- Create PASSENGERS table
+CREATE TABLE passengers (
+  passenger_ID INT PRIMARY KEY AUTO_INCREMENT, 				-- Unique identifier for each passenger (Primary Key, Auto Increment)
+  first_Name VARCHAR(50) NOT NULL, 							-- Passenger's first name (Not Null)
+  last_Name VARCHAR(50) NOT NULL, 							-- Passenger's last name (Not Null)
+  email VARCHAR(100) UNIQUE NOT NULL, 						-- Passenger's email address (Not Null, must be unique)
+  phone_number VARCHAR(15), 								-- Passenger's phone number (Optional)
+  date_of_birth DATE NOT NULL, 								-- Passenger's date of birth (Not Null)
+  frequent_flyer_number VARCHAR(20) UNIQUE, 				-- Frequent flyer number (Optional, must be unique)
+  nationality VARCHAR(50) NOT NULL 							-- Nationality of the passenger (Not Null)
+);
 
 
+-- Insert Records into PASSENGERS Table
+INSERT INTO passengers (first_name, last_name, email, phone_number, date_of_birth, frequent_flyer_number, nationality)
+VALUES 
+('Rahul', 'Sharma', 'rahul.sharma@example.com', '9876543210', '1990-01-15', 'FF001', 'India'),
+('Priya', 'Verma', 'priya.verma@example.com', '8765432109', '1992-02-20', 'FF002', 'India'),
+('Amit', 'Kumar', 'amit.kumar@example.com', '7654321098', '1988-03-25', 'FF003', 'India'),
+('Sneha', 'Reddy', 'sneha.reddy@example.com', '6543210987', '1995-04-30', 'FF004', 'India'),
+('Vikram', 'Singh', 'vikram.singh@example.com', '5432109876', '1985-05-05', 'FF005', 'India'),
+('Neha', 'Gupta', 'neha.gupta@example.com', '4321098765', '1993-06-10', 'FF006', 'India'),
+('Ravi', 'Patel', 'ravi.patel@example.com', '3210987654', '1987-07-15', 'FF007', 'India'),
+('Anjali', 'Mehta', 'anjali.mehta@example.com', '2109876543', '1991-08-20', 'FF008', 'India'),
+('Karan', 'Bansal', 'karan.bansal@example.com', '1098765432', '1989-09-25', 'FF009', 'India'),
+('Pooja', 'Joshi', 'pooja.joshi@example.com', '0987654321', '1994-10-30', 'FF010', 'India'),
+('Suresh', 'Nair', 'suresh.nair@example.com', '9876543210', '1986-11-05', 'FF011', 'India'),
+('Tina', 'Chopra', 'tina.chopra@example.com', '8765432109', '1992-12-10', 'FF012', 'India'),
+('Mohit', 'Agarwal', 'mohit.agarwal@example.com', '7654321098', '1988-01-15', 'FF013', 'India'),
+('Ritika', 'Sethi', 'ritika.sethi@example.com', '6543210987', '1995-02-20', 'FF014', 'India'),
+('Deepak', 'Kohli', 'deepak.kohli@example.com', '5432109876', '1985-03-25', 'FF015', 'India');
 
 
+-- ------------------------------------------------------------------------------
+-- 							Table 3 : BOOKINGS									|
+-- ------------------------------------------------------------------------------
+
+-- Create BOOKINGS table
+CREATE TABLE bookings (
+  booking_id INT PRIMARY KEY AUTO_INCREMENT, 						-- Unique identifier for each booking (Primary Key, Auto Increment)
+  flight_id INT NOT NULL, 											-- Foreign key referencing Flights table (Not Null)
+  passenger_id INT NOT NULL, 										-- Foreign key referencing Passengers table (Not Null)
+  booking_date DATETIME NOT NULL, 									-- Date and time of booking (Not Null)
+  number_of_seats INT NOT NULL CHECK (Number_of_Seats > 0), 		-- Number of seats booked (Not Null, must be greater than zero)
+  total_price DECIMAL(10, 2) NOT NULL, 								-- Total price for the booking (Not Null)
+  booking_status ENUM('Confirmed', 'Cancelled', 'Pending') 
+		NOT NULL DEFAULT 'Pending', 								-- Status of the booking (Not Null, default is 'Pending')
+  FOREIGN KEY (flight_id) REFERENCES flights(flight_id) 
+		ON DELETE CASCADE, 											-- Foreign key constraint linking to Flights table with cascading delete
+  FOREIGN KEY (passenger_id) REFERENCES passengers(passenger_id) 
+		ON DELETE CASCADE 											-- Foreign key constraint linking to Passengers table with cascading delete
+);
+
+INSERT INTO bookings (flight_id, passenger_id, booking_date, number_of_seats, total_price, booking_status)
+VALUES 
+(1, 1, '2023-09-01 10:00:00', 1, 1500.00, 'Confirmed'),
+(2, 2, '2023-09-02 11:00:00', 2, 3000.00, 'Confirmed'),
+(3, 3, '2023-09-03 12:00:00', 1, 1500.00, 'Confirmed'),
+(4, 4, '2023-09-04 13:00:00', 1, 1500.00, 'Confirmed'),
+(5, 5, '2023-09-05 14:00:00', 1, 1500.00, 'Confirmed'),
+(6, 6, '2023-09-06 15:00:00', 1, 1500.00, 'Confirmed'),
+(7, 7, '2023-09-07 16:00:00', 1, 1500.00, 'Confirmed'),
+(8, 8, '2023-09-08 17:00:00', 1, 1500.00, 'Confirmed'),
+(9, 9, '2023-09-09 18:00:00', 1, 1500.00, 'Confirmed'),
+(10, 10, '2023-09-10 19:00:00', 1, 1500.00, 'Confirmed'),
+(11, 11, '2023-09-11 20:00:00', 1, 1500.00, 'Confirmed'),
+(12, 12, '2023-09-12 21:00:00', 1, 1500.00, 'Confirmed'),
+(13, 13, '2023-09-13 22:00:00', 1, 1500.00, 'Confirmed'),
+(14, 14, '2023-09-14 23:00:00', 1, 1500.00, 'Confirmed'),
+(15, 15, '2023-09-15 09:00:00', 1, 1500.00, 'Confirmed');
+
+
+-- ------------------------------------------------------------------------------
+-- 							Table 4 : AIRLINES									|
+-- ------------------------------------------------------------------------------
+
+-- Create Airlines table
+CREATE TABLE airlines (
+  airline_id INT PRIMARY KEY AUTO_INCREMENT, 				-- Unique identifier for each airline (Primary Key, Auto Increment)
+  airline_name VARCHAR(100) NOT NULL, 						-- Name of the airline (Not Null)
+  iata_code VARCHAR(3) UNIQUE NOT NULL, 					-- IATA code for the airline (Not Null, must be unique)
+  country VARCHAR(50) NOT NULL, 							-- Country where the airline is based (Not Null)
+  established_year INT CHECK (established_year > 1900), 	-- Year the airline was established (Must be greater than 1900)
+  headquarter_location VARCHAR(100) NOT NULL 				-- Location of the airline's headquarters (Not Null)
+);
+
+-- Insert Records into Airlines Table
+INSERT INTO airlines (airline_name, iata_code, country, established_year, headquarter_location)
+VALUES 
+('Air India', 'AI', 'India', 1932, 'Mumbai'),
+('IndiGo', '6E', 'India', 2006, 'Gurgaon'),
+('SpiceJet', 'SG', 'India', 2005, 'Gurgaon'),
+('Vistara', 'UK', 'India', 2013, 'Gurgaon'),
+('GoAir', 'G8', 'India', 2005, 'Mumbai'),
+('AirAsia India', 'I5', 'India', 2014, 'Bangalore'),
+('Alliance Air', '9I', 'India', 1996, 'Delhi'),
+('Jet Airways', '9W', 'India', 1993, 'Mumbai'),
+('Air India Express', 'IX', 'India', 2005, 'Kochi'),
+('Star Air', 'S5', 'India', 2019, 'Bangalore'),
+('Akasa Air', 'QP', 'India', 2022, 'Mumbai'),
+('TruJet', '2T', 'India', 2015, 'Hyderabad'),
+('Zoom Air', 'Z5', 'India', 2017, 'Delhi'),
+('Flybig', 'FB', 'India', 2020, 'Indore'),
+('Deccan Charters', 'DC', 'India', 1997, 'Bangalore');
+
+
+-- --------------------------------------------------
+-- 					JOIN CLAUSE Queries	 			|
+-- --------------------------------------------------
+
+-- Join flights with bookings to get flight details along with booking information
+SELECT * 
+FROM flights f
+INNER JOIN bookings b
+ON f.flight_id = b.flight_id;
+
+-- Join flights with passengers to get flight details along with passenger information
+SELECT f.flight_id, f.flight_number, p.passenger_id, p.first_name, p.last_name
+FROM flights f
+INNER JOIN bookings b ON f.flight_id = b.flight_id
+INNER JOIN passengers p ON b.passenger_id = p.passenger_id;
+
+-- Left join flights with bookings to get all flights and their booking status (if any)
+SELECT f.flight_id, f.flight_number, b.booking_id, b.booking_status
+FROM flights f
+LEFT JOIN bookings b
+ON f.flight_id = b.flight_id;
+
+-- Left join Flights with Airlines to get flight details along with airline information
+SELECT f.Flight_ID, f.Flight_Number, a.Airline_Name, a.IATA_Code
+FROM Flights f
+LEFT JOIN Airlines a ON f.Airline_ID = a.Airline_ID;  -- Assuming Airline_ID is added to Flights table
+
+-- Right join BOOKINGS with FLIGHTS to get all bookings and their corresponding flight details (if any)
+SELECT b.booking_id, b.booking_date, f.flight_number, f.departure_airport
+FROM bookings b 
+RIGHT JOIN flights f
+ON b.flight_id = f.flight_id;
