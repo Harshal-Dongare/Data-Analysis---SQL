@@ -227,7 +227,61 @@ ALTER TABLE flights_schedules
 RENAME TO flights;
 
 
+-- --------------------------------------------------
+-- 			ADD and DROP CONSTRAINTS Queries	 	|
+-- --------------------------------------------------
 
+-- Add a CHECK constraint to ensure flight_duration is positive
+ALTER TABLE flights
+ADD CONSTRAINT chk_flight_duration CHECK (flight_duration >= 0);
+
+-- Drop the CHECK constraint on flight_duration
+ALTER TABLE flights
+DROP CONSTRAINT chk_flight_duration;
+
+-- Add a UNIQUE Constraint on flight_number
+ALTER TABLE flights
+ADD CONSTRAINT uq_flight_number UNIQUE (flight_number);
+
+-- Add a CHECK Constraint for seats available
+ALTER TABLE flights
+ADD CONSTRAINT chk_seats_available CHECK (seats_available >= 0);
+
+-- Drop the CHECK Constraint on seats_available
+ALTER TABLE flights
+DROP CONSTRAINT chk_seats_available;
+
+-- Add a FOREIGN KEY Constraint (if applicable)
+ALTER TABLE flights
+ADD CONSTRAINT fk_airport FOREIGN KEY (departure_airport) REFERENCES airports(airport_name);
+
+-- Drop the FOREIGN KEY Constraint
+ALTER TABLE flights
+DROP CONSTRAINT fk_airport;
+
+-- Add a NOT NULL Constraint to flight_number
+ALTER TABLE flights
+MODIFY COLUMN flight_number VARCHAR(10) NOT NULL;
+
+-- Drop the NOT NULL Constraint from flight_number
+ALTER TABLE flights
+MODIFY COLUMN flight_number VARCHAR(10);
+
+-- Add a DEFAULT Constraint for status
+ALTER TABLE flights
+ALTER COLUMN status SET DEFAULT 'On Time';
+
+-- Drop the DEFAULT Constraint for status
+ALTER TABLE flights
+ALTER COLUMN status DROP DEFAULT;
+
+-- Add a UNIQUE Constraint on aircraft_type
+ALTER TABLE flights
+ADD CONSTRAINT uq_aircraft_type UNIQUE (aircraft_type);
+
+-- Drop the UNIQUE Constraint on aircraft_type
+ALTER TABLE flights
+DROP CONSTRAINT uq_aircraft_type;
 
 
 
