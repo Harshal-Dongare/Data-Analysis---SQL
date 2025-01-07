@@ -194,6 +194,51 @@ DELETE FROM flights
 WHERE seats_available < 30;
 
 
+-- ----------------------------------------------
+-- 					ALTER Queries	 			|
+-- ----------------------------------------------
+
+-- Add a new column for flight's terminal
+ALTER TABLE flights
+ADD COLUMN terminal VARCHAR(10);
+
+-- Drop the terminal column from flights table
+ALTER TABLE flights
+DROP COLUMN terminal;
+
+-- Add a new column for flight's airline
+ALTER TABLE flights
+ADD COLUMN airline VARCHAR(50) DEFAULT 'undefined';
+
+-- Change the data type of flight_number
+ALTER TABLE flights
+MODIFY COLUMN flight_number VARCHAR(15);
+
+-- Rename the arrival_airport column
+ALTER TABLE flights
+RENAME COLUMN arrival_airport TO destination_airport;
+
+-- Add a default value for seats_available
+ALTER TABLE flights
+ALTER COLUMN seats_available SET DEFAULT 100;
+
+-- Rename the flights table
+ALTER TABLE flights_schedules
+RENAME TO flights;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
