@@ -284,13 +284,39 @@ ALTER TABLE flights
 DROP CONSTRAINT uq_aircraft_type;
 
 
+-- --------------------------------------------------
+-- 				WHERE CLAUSE Queries	 			|
+-- --------------------------------------------------
 
+-- Select flights that are delayed
+SELECT * FROM flights WHERE status = 'Delayed';
 
+-- Select flights departing from Delhi
+SELECT * FROM flights WHERE departure_airport = 'Delhi (DEL)';
 
+-- Select flights arriving in Mumbai
+SELECT * FROM flights WHERE arrival_airport = 'Mumbai (BOM)';
 
+-- Select flights with a duration greater than 120 minutes
+SELECT * FROM flights WHERE flight_duration > 120;
 
+-- Select flights with available seats less than 30
+SELECT * FROM flights WHERE seats_available  < 30;
 
+-- Select flights that departed after a specific date
+SELECT * FROM flights WHERE departure_time > '2023-10-01 00:00:00';
 
+-- Select flights with a specific flight number
+SELECT * FROM flights WHERE flight_number = 'AI101';
+
+-- Select flights that are either cancelled or delayed
+SELECT * FROM flights WHERE status IN ('Cancelled', 'Delayed');
+
+-- Select flights with a flight duration between 90 and 150 minutes
+SELECT * FROM flights WHERE flight_duration BETWEEN 90 AND 150;
+
+-- Select flights with more than 50 available seats
+SELECT * FROM flights WHERE seats_available > 50;
 
 
 
