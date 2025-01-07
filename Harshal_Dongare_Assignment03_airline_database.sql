@@ -354,14 +354,39 @@ SELECT DISTINCT arrival_time FROM flights;
 SELECT DISTINCT seats_available FROM flights;
 
 
+-- --------------------------------------------------
+-- 					FROM CLAUSE Queries	 			|
+-- --------------------------------------------------
 
+-- Select all records from Flights table
+SELECT * FROM flights;
 
+-- Select flight numbers and statuses from flights table
+SELECT flight_number, status FROM flights;
 
+-- Select departure and arrival airports from flights table
+SELECT departure_airport, arrival_airport FROM flights;
 
+-- Select flight ID and duration from flights table
+SELECT flight_id, flight_duration FROM flights;
 
+-- Select all columns from flights table where status is 'On Time'
+SELECT * FROM flights WHERE status = 'On Time';
 
+-- Select all flights with a specific aircraft type
+SELECT * FROM flights WHERE aircraft_type = 'Boeing 737';
 
+-- Select all flights departing after a specific time
+SELECT * FROM flights WHERE departure_time > '2023-10-01 12:00:00';
 
+-- Select all flights arriving in a specific city
+SELECT * FROM flights WHERE arrival_airport = 'Chennai (MAA)';
+
+-- Select all flights with available seats greater than 40
+SELECT * FROM flights WHERE seats_available > 40;
+
+-- Select all flights with a specific flight duration
+SELECT * FROM flights WHERE flight_duration = 120;
 
 
 
