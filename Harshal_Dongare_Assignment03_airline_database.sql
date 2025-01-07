@@ -147,3 +147,67 @@ WHERE flight_id = 9;
 UPDATE flights
 SET departure_airport = 'Delhi (DEL)'
 WHERE arrival_airport = 'Mumbai (BOM)'; 
+
+
+-- ----------------------------------------------
+-- 					DELETE Queries	 			|
+-- ----------------------------------------------
+
+-- Delete a specific flight
+DELETE FROM flights
+WHERE flight_id = 2;
+
+-- Delete all delayed flights
+DELETE FROM flights
+WHERE status = 'Delayed';
+
+-- Delete flights with no available seats
+DELETE FROM flights
+WHERE seats_available = 0;
+
+-- Delete a flight by flight number
+DELETE FROM flights
+WHERE flight_number = 'AI101';
+
+-- Delete flights departing before a specific date 
+DELETE FROM flights
+WHERE departure_time < '2023-10-01 00:00:00';
+
+-- Delete all flights to a specific destination
+DELETE FROM flights
+WHERE arrival_airport = 'Jaipur (JAI)';
+
+-- Delete flights with a duration less than a specific value
+DELETE FROM flights
+WHERE flight_duration < 90;
+
+-- Delete flights with a specific status
+DELETE FROM flights
+WHERE status = 'Cancelled';
+
+-- Delete flights with a specific aircraft type
+DELETE FROM flights
+WHERE aircraft_type = 'Airbus A320';
+
+-- Delete all flights with less than 30 seats available
+DELETE FROM flights
+WHERE seats_available < 30;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
