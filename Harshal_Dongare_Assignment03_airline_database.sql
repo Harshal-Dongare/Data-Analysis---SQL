@@ -389,6 +389,39 @@ SELECT * FROM flights WHERE seats_available > 40;
 SELECT * FROM flights WHERE flight_duration = 120;
 
 
+-- --------------------------------------------------
+-- 					ORDER BY CLAUSE Queries	 		|
+-- --------------------------------------------------
+
+-- Select all flights ordered by departure_time 
+SELECT * FROM flights ORDER BY departure_time;
+
+-- Select all flights ordered by flight_duration in descending order
+SELECT * FROM flights ORDER BY flight_duration DESC;
+
+-- Select all flights ordered by seats_available
+SELECT * FROM flights ORDER BY seats_available;
+
+-- Select all flights ordered by status and then by departure_time
+SELECT * FROM flights ORDER BY status, departure_time;
+
+-- Select all flights ordered by arrival_airport
+SELECT * FROM flights ORDER BY arrival_airport;
+
+-- Select all flights ordered by flight_number in descending order
+SELECT * FROM flights ORDER BY flight_number DESC;
+
+-- Select all flights ordered by departure_airport and then by flight_duration
+SELECT * FROM flights ORDER BY departure_airport, flight_duration;
+
+-- Select all flights ordered by arrival_time in descending order
+SELECT * FROM flights ORDER BY arrival_time DESC;
+
+-- Select all flights ordered by flight_id
+SELECT * FROM flights ORDER BY flight_id;
+
+-- Select all flights ordered by arrival_time
+SELECT * FROM flights ORDER BY arrival_time;
 
 
 
