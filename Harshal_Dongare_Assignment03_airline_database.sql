@@ -424,4 +424,46 @@ SELECT * FROM flights ORDER BY flight_id;
 SELECT * FROM flights ORDER BY arrival_time;
 
 
+-- --------------------------------------------------
+-- 					GROUP BY CLAUSE Queries	 		|
+-- --------------------------------------------------
+
+-- Count flights grouped by status
+SELECT status, COUNT(*) AS number_of_flights FROM flights GROUP BY status;
+
+-- Group flights by departure_airport and count them
+SELECT departure_airport, COUNT(*) FROM flights GROUP BY departure_airport;
+
+-- Group flights by arrival_airport and count them
+SELECT arrival_airport, COUNT(*) FROM flights GROUP BY arrival_airport;
+
+-- Group flights by aircraft_type and calculate average duration
+SELECT aircraft_type, AVG(flight_duration) FROM flights GROUP BY aircraft_type;
+
+-- Group flights by flight_number and count them
+SELECT flight_number, COUNT(*) FROM flights GROUP BY flight_number;
+
+-- Group flights by departure_airport and calculate total available seats
+SELECT departure_airport, SUM(seats_available) FROM flights GROUP BY departure_airport;
+
+-- Group flights by status and calculate maximum duration
+SELECT status, MAX(flight_duration) FROM flights GROUP BY status;
+
+-- Group flights by arrival_airport and calculate minimum duration
+SELECT arrival_airport, MIN(flight_duration) FROM flights GROUP BY arrival_airport;
+
+-- Group flights by departure_airport and calculate average available seats
+SELECT departure_airport, AVG(seats_available) FROM flights GROUP BY departure_airport;
+
+-- Group flights by aircraft_type and count distinct statuses
+SELECT aircraft_type, COUNT(DISTINCT status) FROM flights GROUP BY aircraft_type;
+
+
+
+
+
+
+
+
+ 
 
