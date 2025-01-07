@@ -706,3 +706,112 @@ SELECT b.booking_id, b.booking_date, f.flight_number, f.departure_airport
 FROM bookings b 
 RIGHT JOIN flights f
 ON b.flight_id = f.flight_id;
+
+
+-- --------------------------------------------------
+-- 					UNION CLAUSE Queries	 		|
+-- --------------------------------------------------
+
+-- Select flights from two different departure airports
+SELECT flight_id, flight_number, departure_airport, arrival_airport
+FROM flights
+WHERE departure_airport = 'Delhi (DEL)'
+UNION
+SELECT flight_id, flight_number, departure_airport, arrival_airport
+FROM flights
+WHERE departure_airport = 'Mumbai (BOM)';
+
+-- Select All Delayed and Cancelled Flights
+SELECT flight_id, flight_number, status
+FROM flights
+WHERE status = 'On Time'
+UNION
+SELECT flight_id, flight_number, status
+FROM flights
+WHERE status = 'Cancelled';
+
+-- Select Flights with More Than 50 Available Seats
+SELECT flight_id, flight_number, seats_available
+FROM flights
+WHERE seats_available > 50
+UNION
+SELECT flight_id, flight_number, seats_available
+FROM flights
+WHERE flight_duration < 120;
+
+-- Select Flights to Chennai and Bangalore
+SELECT flight_id, flight_number, arrival_airport
+FROM flights
+WHERE arrival_airport = 'Chennai (MAA)'
+UNION
+SELECT flight_id, flight_number, arrival_airport
+FROM flights
+WHERE arrival_airport = 'Bangalore (BLR)';
+
+-- Select flights with specific flight numbers
+SELECT flight_id, flight_number, departure_airport
+FROM flights
+WHERE flight_number = 'AI101'
+UNION
+SELECT flight_id, flight_number, departure_airport
+FROM flights
+WHERE flight_number = 'AI102';
+
+-- Select flights with a duration greater than 150 minutes
+SELECT flight_id, flight_number, flight_duration
+FROM flights
+WHERE flight_duration > 150
+UNION
+SELECT flight_id, flight_number, flight_duration
+FROM flights
+WHERE status = 'On Time';
+
+-- Select flights with arrival in specific cities
+SELECT flight_id, flight_number, arrival_airport
+FROM flights
+WHERE arrival_airport = 'Hyderabad (HYD)'
+UNION
+SELECT flight_id, flight_number, arrival_airport
+FROM flights
+WHERE arrival_airport = 'Pune (PNQ)';
+
+-- Select flights with specific statuses
+SELECT flight_id, flight_number, status
+FROM flights
+WHERE status = 'On Time'
+UNION
+SELECT Flight_ID, Flight_Number, Status 
+FROM Flights 
+WHERE Status = 'Delayed';
+
+-- Select flights with departure after a specific time
+SELECT flight_id, flight_number, departure_time
+FROM flights
+WHERE departure_time > '2023-10-01 12:00:00'
+UNION
+SELECT flight_id, flight_number, departure_time
+FROM flights
+WHERE departure_time > '2023-10-01 14:00:00';
+
+-- Select Flights with Different Aircraft Types
+SELECT flight_id, flight_number, aircraft_type
+FROM flights 
+WHERE aircraft_type = 'Boeing 737'
+UNION
+SELECT flight_id, flight_number, aircraft_type
+FROM flights 
+WHERE aircraft_type = 'Airbus A320';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
