@@ -492,3 +492,80 @@ SELECT status, COUNT(*) FROM flights GROUP BY status HAVING COUNT(*) = 1;
 
 -- Select arrival airports with an average flight duration greater than 100 minutes
 SELECT arrival_airport, AVG(flight_duration) FROM flights GROUP BY arrival_airport HAVING AVG(flight_duration) > 100;
+
+
+-- --------------------------------------------------
+-- 					LIMIT CLAUSE Queries	 		|
+-- --------------------------------------------------
+
+-- Select the first 5 flights
+SELECT * FROM flights LIMIT 5;
+
+-- Select the first 10 flights ordered by Departure_Time
+SELECT * FROM flights ORDER BY departure_time LIMIT 10;
+
+-- Select the last 3 flights based on flight_id
+SELECT * FROM flights ORDER BY flight_id DESC LIMIT 3;
+
+-- Select the first 7 flights that are delayed
+SELECT * FROM flights WHERE status = 'Delayed' LIMIT 7;
+
+-- Select the first 5 flights departing from Delhi
+SELECT * FROM flights WHERE departure_airport = 'Delhi (DEL)' LIMIT 5;
+
+-- Select the first 10 flights with available seats greater than 50
+SELECT * FROM flights WHERE seats_available > 50 LIMIT 10;
+
+-- Select the first 5 flights arriving in Mumbai
+SELECT * FROM flights WHERE arrival_airport = 'Mumbai (BOM)' LIMIT 5;
+
+-- Select the first 10 flights with a flight duration greater than 120 minutes
+SELECT * FROM flights WHERE flight_duration > 120 LIMIT 10;
+
+-- Select the first 5 flights ordered by flight_number
+SELECT * FROM flights ORDER BY flight_number LIMIT 5;
+
+-- Select the first 3 flights that departed after a specific date
+SELECT * FROM flights WHERE departure_time > '2023-10-01 00:00:00' LIMIT 3;
+
+-- Select 5 flights starting from the 10th record (OFFSET)
+SELECT * FROM flights LIMIT 5 OFFSET 10;
+
+-- Select 10 flights starting from the 20th record
+SELECT * FROM flights LIMIT 10 OFFSET 20;
+
+-- Select 3 flights starting from the 5th record
+SELECT * FROM flights LIMIT 3 OFFSET 5;
+
+-- Select 7 flights starting from the 15th record
+SELECT * FROM flights LIMIT 7 OFFSET 15;
+
+-- Select 4 flights starting from the 0th record (first record)
+SELECT * FROM flights LIMIT 4 OFFSET 0;
+
+-- Select 5 flights starting from the 10th record
+SELECT * FROM flights LIMIT 5 OFFSET 10;
+
+-- Select 10 flights starting from the 20th record
+SELECT * FROM flights LIMIT 10 OFFSET 20;
+
+-- Select 3 flights starting from the 5th record
+SELECT * FROM flights LIMIT 3 OFFSET 5;
+
+-- Select 7 flights starting from the 15th record
+SELECT * FROM flights LIMIT 7 OFFSET 15;
+
+-- Select 4 flights starting from the 0th record (first record)
+SELECT * FROM flights LIMIT 4 OFFSET 0;
+
+-- Get the total number of flights and limit the results
+SELECT SQL_CALC_FOUND_ROWS * FROM flights LIMIT 5;
+SELECT FOUND_ROWS();
+
+
+
+
+
+
+
+
