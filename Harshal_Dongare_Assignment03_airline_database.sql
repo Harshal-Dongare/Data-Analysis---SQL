@@ -319,8 +319,39 @@ SELECT * FROM flights WHERE flight_duration BETWEEN 90 AND 150;
 SELECT * FROM flights WHERE seats_available > 50;
 
 
+-- --------------------------------------------------
+-- 				DISTINCT CLAUSE Queries	 			|
+-- --------------------------------------------------
 
+-- Select distinct aircraft types used in flights
+SELECT DISTINCT aircraft_type FROM flights;
 
+-- Select distinct departure airports
+SELECT DISTINCT departure_airport FROM flights;
+
+-- Select distinct arrival airports
+SELECT DISTINCT arrival_airport FROM flights;
+
+-- Select distinct flight statuses
+SELECT DISTINCT status FROM flights;
+
+-- Select distinct flight numbers
+SELECT DISTINCT flight_number FROM flights;
+
+-- Select distinct combinations of departure and arrival airports
+SELECT DISTINCT departure_airport, arrival_airport FROM flights;
+
+-- Select distinct flight durations
+SELECT DISTINCT flight_duration FROM flights;
+
+-- Select distinct departure times
+SELECT departure_time FROM flights;
+
+-- Select distinct arrival times
+SELECT DISTINCT arrival_time FROM flights;
+
+-- Select distinct seat availability counts
+SELECT DISTINCT seats_available FROM flights;
 
 
 
