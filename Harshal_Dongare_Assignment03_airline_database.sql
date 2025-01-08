@@ -803,6 +803,61 @@ FROM flights
 WHERE aircraft_type = 'Airbus A320';
 
 
+-- --------------------------------------------------
+-- 					INTO CLAUSE Queries	 			|
+-- --------------------------------------------------
+
+-- Create a new table to store flights with less than 50 available seats
+/*
+SELECT flight_number, departure_airport  			This format only supported in Postgress and SQL Server 
+INTO new_flights_table
+FROM flights
+WHERE seats_available < 50;
+*/
+CREATE TABLE new_flights_table AS
+SELECT flight_number, departure_airport
+FROM flights
+WHERE seats_available < 50;
+
+-- Create a new table to store details of flights that are delayed
+CREATE TABLE delayed_flights AS
+SELECT flight_id, flight_number, arrival_airport
+FROM flights
+WHERE status = 'Delayed';
+
+-- Create a new table for flights that use Boeing 737 aircraft
+CREATE TABLE boeing737_flights AS
+SELECT flight_id, flight_number, departure_airport, arrival_airport
+FROM flights
+WHERE aircraft_type = 'Boeing 737';
+
+-- Create a new table for flights that have a duration greater than 150 minutes
+CREATE TABLE long_flights AS
+SELECT flight_number, flight_duration
+FROM flights
+WHERE flight_duration > 150;
+
+-- Create a new table for flights departing from Delhi (DEL)
+CREATE TABLE delhi_departures AS
+SELECT flight_number, departure_airport, arrival_airport
+FROM flights
+WHERE departure_airport = 'Delhi (DEL)';
+
+-- Create a new table for flights that have no available seats
+CREATE TABLE fully_booked_flights AS
+SELECT flight_number, departure_airport, arrival_airport
+FROM flights
+WHERE seats_available = 0;
+
+
+
+
+
+
+
+
+
+
 
 
 
