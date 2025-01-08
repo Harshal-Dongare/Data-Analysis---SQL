@@ -955,7 +955,41 @@ SELECT * FROM flights
 WHERE seats_available IN (30, 50);
 
 
+-- --------------------------------------------------
+-- 				BETWEEN CLAUSE Queries	 			|
+-- --------------------------------------------------
 
+-- Select all flights with a duration between 120 and 150 minutes
+SELECT * FROM flights
+WHERE flight_duration BETWEEN 120 AND 150;
+
+-- Select flights that depart between 8 AM and 12 PM on October 1, 2023
+SELECT * FROM flights
+WHERE departure_time BETWEEN '2023-10-01 08:00:00' AND '2023-10-01 12:00:00';
+
+-- Select flights that arrive between 10 AM and 2 PM on October 1, 2023
+SELECT * FROM flights
+WHERE arrival_time BETWEEN '2023-10-01 10:00:00' AND '2023-10-01 14:00:00';
+
+-- Select flights that have between 20 and 60 available seats
+SELECT * FROM flights
+WHERE seats_available BETWEEN 20 AND 60;
+
+-- Select flights with Flight_IDs between 5 and 10
+SELECT * FROM flights
+WHERE flight_id BETWEEN 5 AND 10;
+
+-- Select flights with a duration less than 90 minutes
+SELECT * FROM flights
+WHERE flight_duration < 90;
+
+-- Select flights that depart between 12 PM and 6 PM on October 1, 2023
+SELECT * FROM flights
+WHERE departure_time BETWEEN '2023-10-01 12:00:00' AND '2023-10-01 18:00:00';
+
+-- Select flights that arrive between 6 PM and 10 PM on October 1, 2023
+SELECT * FROM flights
+WHERE arrival_time BETWEEN '2023-10-01 18:00:00' AND '2023-10-01 22:00:00';
 
 
 
