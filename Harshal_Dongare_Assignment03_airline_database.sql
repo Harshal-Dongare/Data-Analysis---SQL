@@ -850,6 +850,72 @@ FROM flights
 WHERE seats_available = 0;
 
 
+-- --------------------------------------------------
+-- 					CASE CLAUSE Queries	 			|
+-- --------------------------------------------------
+
+-- Select flight numbers and provide a descriptive status message
+SELECT flight_number,
+	CASE
+		WHEN status = 'On Time' THEN 'Flight is on schedule'
+		WHEN status = 'Delayed' THEN 'Flight is delayed'
+        ELSE 'Flight is Cancelled'
+	END AS flight_status
+FROM flights;
+
+-- Select flight numbers and categorize them based on duration
+SELECT flight_number,
+	CASE
+		WHEN flight_duration < 90 THEN 'Short Flight'
+		WHEN flight_duration BETWEEN 90 AND 150 THEN 'Medium Flight'
+        ELSE 'Long Flight'
+	END AS flight_duration
+FROM flights;
+
+-- Select flight numbers and categorize seat availability
+SELECT flight_number,
+	CASE
+		WHEN seats_available > 50 THEN 'Plenty of seats available'
+		WHEN seats_available BETWEEN 20 AND 50 THEN 'Limited seats available'
+        ELSE 'Almost FULL'
+	END AS seats_available
+FROM flights;
+
+-- Select flight numbers and convert flight duration from minutes to hours
+SELECT flight_number,
+	CASE
+		WHEN flight_duration < 60 THEN CONCAT(flight_duration, ' Minutes')
+        ELSE CONCAT(flight_duration, ' Minutes')
+	END AS seats_available
+FROM flights;
+
+-- Select flight numbers and provide status based on departure time
+SELECT flight_number,
+	CASE
+		WHEN departure_time < NOW() THEN 'Flight has departed'
+		WHEN departure_time = NOW() THEN 'Flight is departing now'
+        ELSE 'Flight is scheduled to depart'
+	END AS departure_time
+FROM flights;
+
+-- Select flight numbers and categorize based on aircraft type
+SELECT flight_number,
+	CASE 
+		WHEN aircraft_type LIKE 'Boeing%' THEN 'Boeing Aircraft'
+		WHEN aircraft_type LIKE 'Airbus%' THEN 'Airbus Aircraft'
+        ELSE 'Long Trip'
+	END AS aircraft_type
+FROM flights;
+
+-- Select flight numbers and provide a status message based on flight duration
+SELECT flight_number,
+	CASE
+		WHEN status = 'On Time' THEN 'All systems go'
+		WHEN status = 'Delayed' THEN 'Please wait for updates'
+		WHEN status = 'Delayed' THEN 'We apologize for the inconvenience'
+        ELSE 'Unkown Status'
+	END AS status
+FROM flights;
 
 
 
