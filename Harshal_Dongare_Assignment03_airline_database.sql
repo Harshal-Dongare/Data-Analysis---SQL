@@ -1080,3 +1080,72 @@ WHERE EXISTS (
     FROM flights
     WHERE aircraft_type = f.aircraft_type
  );
+ 
+ 
+ -- -------------------------------------------------
+-- 						ALIAS	 					|
+-- --------------------------------------------------
+
+-- Table Alias
+SELECT f.flight_id, f.flight_number, f.departure_airport, f.arrival_airport
+FROM flights f;
+
+-- Column Alias
+SELECT f.Flight_ID AS ID, f.Flight_Number AS Num, f.Departure_Airport AS Departure
+FROM flights f;
+
+-- Derived Table Alias
+SELECT *
+FROM (
+	SELECT f.Flight_ID, f.Flight_Number, f.Departure_Airport, f.Arrival_Airport
+	FROM Flights f
+) AS flight_info;
+
+-- Filtering with Alias
+SELECT f.flight_id, f.flight_number, f.departure_airport
+FROM flights f
+WHERE f.departure_airport = 'JFK';
+
+-- Sorting with Alias
+SELECT f.flight_id, f.flight_number, f.departure_airport, f.arrival_airport
+FROM flights f
+ORDER BY f.departure_time;
+
+-- Grouping with Alias
+SELECT f.departure_airport, COUNT(f.flight_id) AS num_flights
+FROM flights f
+GROUP BY f.departure_airport;
+
+-- Aggregate Functions with Alias
+SELECT f.Departure_Airport, AVG(f.Flight_Duration) AS AvgDuration
+FROM Flights f
+GROUP BY f.Departure_Airport;
+
+-- Having Clause with Alias
+SELECT f.departure_airport, AVG(f.flight_duration) AS avg_duration
+FROM flights f
+GROUP BY f.departure_airport
+HAVING AVG(f.flight_duration) = 4;
+
+
+-- add a column then write a query to enter all details at 1 time.
+ALTER TABLE flights ADD flight_status varchar(20);
+
+select * from flights;
+
+UPDATE flights
+SET flight_status = 'Scheduled'
+WHERE flight_id IN (1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15);
+
+UPDATE flights SET flight_status = 
+  CASE
+    WHEN flight_id IN (1, 2, 3) THEN 'Scheduled' 
+    WHEN flight_id IN (4, 5) THEN 'Departed'
+    WHEN flight_id IN (6,11,13) THEN 'Arrived'
+    WHEN flight_id IN (7,12) THEN 'Delayed'
+    WHEN flight_id IN (8,14,15) THEN 'Cancelled'
+    WHEN flight_id IN (9) THEN 'Diverted' 
+    WHEN flight_id IN (10) THEN 'Held' 
+    ELSE 'Unknown' 
+  END
+WHERE flight_id IN  (1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15);
