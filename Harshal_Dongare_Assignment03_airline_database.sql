@@ -1035,3 +1035,48 @@ WHERE Departure_Airport LIKE '%MAA%';
 -- Select all flights arriving at airports that start with the letter 'K'
 SELECT * FROM Flights 
 WHERE Arrival_Airport LIKE 'K%';
+
+
+-- --------------------------------------------------
+-- 					EXIST CLAUSE Queries	 		|
+-- --------------------------------------------------
+
+-- Select all flights where there exists at least one cancelled flight to the same arrival airport
+SELECT * FROM flights f
+WHERE EXISTS (
+	SELECT 1
+    FROM flights
+    WHERE status = 'Cancelled' AND arrival_airport = f.arrival_airport
+);
+
+ -- Select all flights where there exists at least one delayed flight from the same departure airport
+ SELECT * FROM flights f
+ WHERE EXISTS(
+	SELECT 1
+    FROM flights
+    WHERE status = 'Delayed' AND departure_airport = f.departure_airport
+ );
+ 
+ -- Select all flights where there exists at least one flight to the same destination with available seats
+ SELECT * FROM flights f
+ WHERE EXISTS(
+	SELECT 1
+    FROM flights
+    WHERE arrival_airport = f.arrival_airport and seats_available > 0
+ );
+ 
+ -- Select all flights where there exists at least one flight departing at the same time
+ SELECT * FROM flights f
+ WHERE EXISTS (
+	SELECT 1
+    FROM flights
+    WHERE departure_time = f.departure_time
+ );
+ 
+ -- Select all flights where there exists at least one flight using the same aircraft type
+ SELECT * FROM flights f
+ WHERE EXISTS (
+	SELECT 1
+    FROM flights
+    WHERE aircraft_type = f.aircraft_type
+ );
