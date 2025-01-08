@@ -27,7 +27,7 @@ CREATE TABLE products(
     product_name VARCHAR(255) NOT NULL,												-- Name of the product, cannot be NULL
     category VARCHAR(100) NOT NULL,													-- Category of the product
     quantity_in_stock INT NOT NULL CHECK(quantity_in_stock >= 0),					-- Quantity in stock
-    price DECIMAL(10, 2) CHECK(price >= 0),								-- Price of the product
+    price DECIMAL(10, 2) CHECK(price >= 0),											-- Price of the product
     supplier VARCHAR(255),															-- Supplier of the product
     reorder_level INT DEFAULT 0,													-- Reorder level (minimum stock), DEFAULT is 0
     description TEXT,																-- Description of the product, can be NULL
@@ -52,3 +52,4 @@ VALUES
 ('B07W4LZWX1', 'Bose SoundLink Speaker', 'Electronics', 25, 129.99, 'Bose', 5, 'Portable Bluetooth speaker', 'Bin 2D', 'Available');
 
 SELECT * FROM products;
+DROP TABLE products;
