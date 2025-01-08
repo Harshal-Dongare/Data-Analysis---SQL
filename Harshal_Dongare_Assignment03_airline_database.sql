@@ -1149,3 +1149,104 @@ UPDATE flights SET flight_status =
     ELSE 'Unknown' 
   END
 WHERE flight_id IN  (1, 2, 3, 4, 5, 6, 7, 8, 9, 10,11,12,13,14,15);
+
+
+-- --------------------------------------------------------------
+-- 							OPERATORS							|
+-- ---------------------------------------------------------------- 
+
+
+-- ------------------------------------------------------
+-- 					ARITHMETIC OPERATORS				|
+-- ------------------------------------------------------
+
+-- Calculate the total flight duration for Flight AI101, adding 30 minutes for a layover
+SELECT flight_number, flight_number + 30 AS total_duration
+FROM flights
+WHERE flight_number = 'AI101';
+
+-- Calculate the remaining seats after booking 10 seats for flight AI102
+SELECT flight_number, seats_available - 10 AS remaining_seats
+FROM flights
+WHERE flight_number = 'AI102';
+
+-- Calculate the total available seats for all flights by summing the seats_available column
+SELECT SUM(seats_available) AS total_available_seats
+FROM flights;
+
+-- Calculate the average flight duration across all flights
+SELECT AVG(flight_duration) AS avg_flight_duration
+FROM flights;
+
+-- Calculate the flight duration in hours for each flight
+SELECT flight_number, flight_duration/60 AS flight_duration_hours
+FROM flights;
+
+-- Calculate the percentage of available seats for each flight based on a total of 100 seats
+SELECT flight_number, (seats_available/ 100.0) * 100 AS percentage_available
+FROM flights;
+
+-- Calculate the remaining flight duration after 30 minutes for each flight
+SELECT flight_number, flight_duration - 30 AS remaining_flight_duration
+FROM flights
+WHERE flight_duration > 30;				-- Ensure we don't get negative duration
+
+-- Calculate the total number of seats for flights that have more than 50 available seats
+SELECT SUM(seats_available) AS total_seats
+FROM flights
+WHERE seats_available > 50;
+
+-- Calculate the total duration of flights that are delayed
+SELECT SUM(flight_duration)
+FROM flights
+WHERE status = 'Delayed';
+
+-- Calculate the total flight time for flights departing from Delhi
+SELECT SUM(flight_duration) AS total_flight_time
+FROM flights
+WHERE departure_airport = 'Delhi (DEL)';
+
+-- Assuming a hypothetical cost of $2 per minute, calculate total cost for each flight
+SELECT flight_number, 
+       flight_duration * 2 AS Total_Cost 
+FROM flights;
+
+-- Calculate the total available seats for flights with a duration greater than 120 minutes
+SELECT SUM(seats_available) AS total_seats_over_120 
+FROM flights 
+WHERE flight_duration > 120;
+
+-- Calculate remaining seats after booking 5 seats for each flight
+SELECT flight_number, 
+       seats_available - 5 AS Remaining_After_Booking 
+FROM flights;
+
+-- Calculate total revenue from flights assuming a ticket price of $100 per seat
+SELECT flight_number, 
+       seats_available * 100 AS Total_Revenue 
+FROM flights;
+
+-- Calculate the total flight duration for flights arriving in Mumbai
+SELECT SUM(flight_duration) AS Total_Duration_Mumbai 
+FROM flights 
+WHERE arrival_airport = 'Mumbai (BOM)';
+
+-- Calculate the total number of available seats for flights that are on time
+SELECT SUM(seats_available) AS Total_Seats_On_Time 
+FROM flights 
+WHERE status = 'On Time';
+
+-- Calculate the total flight duration for flights that have more than 100 available seats
+SELECT SUM(flight_duration) AS Total_Duration_Over_100 
+FROM flights 
+WHERE seats_available > 100;
+
+-- Calculate the percentage of flights that are delayed compared to total flights
+SELECT (COUNT(CASE WHEN status = 'Delayed' THEN 1 END) * 100) / COUNT(*) AS Percentage_Delayed 
+FROM flights;
+
+-- Calculate the total number of seats for flights with a duration of less than 30 minutes
+SELECT SUM(seats_available) AS Total_Seats_Under_30 
+FROM flights 
+WHERE flight_duration < 30;
+
