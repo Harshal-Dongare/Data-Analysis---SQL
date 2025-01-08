@@ -918,8 +918,41 @@ SELECT flight_number,
 FROM flights;
 
 
+-- --------------------------------------------------
+-- 					IN CLAUSE Queries	 			|
+-- --------------------------------------------------
 
+-- Select all flights arriving at Mumbai (BOM) or Delhi (DEL)
+SELECT * FROM flights
+WHERE arrival_airport IN ('Mumbai (BOM)', 'Delhi (DEL)');
 
+-- Select all flights departing from Delhi (DEL), Chennai (MAA), or Bangalore (BLR)
+SELECT * FROM flights
+WHERE departure_airport IN ('Chennai (MAA)', 'Delhi (DEL)', 'Banglore (BLR)');
+
+-- Select flights with specific flight numbers AI101, AI102, and AI103
+SELECT * FROM flights
+WHERE flight_number IN ('AI101', 'AI102', 'AI103');
+
+-- Select all flights that are either Delayed or Cancelled
+SELECT * FROM flights
+WHERE status IN ('Delayed', 'Cancelled');
+
+-- Select flights that use either Boeing 737 or Airbus A320 aircraft
+SELECT * FROM flights
+WHERE aircraft_type IN ('Boeing 737', 'Airbus A320');
+
+-- Select flights that depart at specific times
+SELECT * FROM flights
+WHERE departure_time IN ('2023-10-01 06:00:00', '2023-10-01 09:00:00');
+
+-- Select flights that have a duration of either 120 or 150 minutes
+SELECT * FROM flights
+WHERE flight_duration IN (120, 150);
+
+-- Select flights that have either 30 or 50 available seats
+SELECT * FROM flights
+WHERE seats_available IN (30, 50);
 
 
 
