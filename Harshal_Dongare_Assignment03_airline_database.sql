@@ -992,14 +992,46 @@ SELECT * FROM flights
 WHERE arrival_time BETWEEN '2023-10-01 18:00:00' AND '2023-10-01 22:00:00';
 
 
+-- --------------------------------------------------
+-- 					LIKE CLAUSE Queries	 			|
+-- --------------------------------------------------
 
+-- Select all flights where the flight number starts with 'AI'
+SELECT * FROM flights
+WHERE flight_number LIKE 'AI%';
 
+-- Select all flights where the flight number ends with '101'
+SELECT * FROM flights
+WHERE flight_number LIKE '%101';
 
+-- Select all flights where the flight number contains '10'
+SELECT * FROM flights
+WHERE flight_number LIKE '%10%';
 
+-- Select all flights departing from airports that have 'Delhi' in their name
+SELECT * FROM flights
+WHERE departure_airport LIKE '%Delhi%';
 
+-- Select all flights arriving at airports that have 'BOM' in their code
+SELECT * FROM flights
+WHERE arrival_airport LIKE '%BOM%';
 
+-- Select all flights that use aircraft types starting with 'Airbus'
+SELECT * FROM flights
+WHERE aircraft_type LIKE 'Airbus%';
 
+-- Select all flights where the status contains the word 'Delayed'
+SELECT * FROM flights
+WHERE status LIKE '%Delayed%';
 
+-- Select all flights where the flight number matches the pattern 'AI1__'
+SELECT * FROM flights
+WHERE flight_number LIKE 'AI1__';
 
+-- Select all flights departing from airports that have 'MAA' in their code
+SELECT * FROM Flights 
+WHERE Departure_Airport LIKE '%MAA%';
 
-
+-- Select all flights arriving at airports that start with the letter 'K'
+SELECT * FROM Flights 
+WHERE Arrival_Airport LIKE 'K%';
