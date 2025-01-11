@@ -789,6 +789,221 @@ VALUES
 
 
 
+-- ------------------------------------------------------------------------------
+-- 								Table 21 : SUPPORT_TICKETS						|
+-- ------------------------------------------------------------------------------
+
+/*
+PURPOSE: The purpose of the support_tickets table is to track and manage customer issues or 
+inquiries submitted for assistance or resolution.
+*/
+
+-- Create table for Support Tickets
+CREATE TABLE support_tickets (
+    ticket_id INT PRIMARY KEY AUTO_INCREMENT,                       -- Unique identifier for each support ticket
+    customer_id INT,                                                -- Reference to the customer who raised the ticket
+    issue_description TEXT NOT NULL,                                -- Detailed description of the issue
+    status ENUM('Open', 'In Progress', 'Resolved', 'Closed') 
+        NOT NULL DEFAULT 'Open',                                    -- Current status of the ticket
+    priority ENUM('Low', 'Medium', 'High', 'Critical') 
+        NOT NULL DEFAULT 'Low',                                     -- Priority level of the issue
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                 -- Timestamp when the ticket was created
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP 
+        ON UPDATE CURRENT_TIMESTAMP,                                -- Timestamp for the last update on the ticket
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) 
+		ON DELETE CASCADE          									-- Foreign key linking to customers table
+);
+
+-- Insert data intp SUPPORT_TICKETS table
+INSERT INTO support_tickets (customer_id, issue_description, status, priority)
+VALUES
+(1, 'The product delivered is damaged. Requesting replacement.', 'Open', 'High'),
+(2, 'Unable to log in to my account. Reset password is not working.', 'In Progress', 'Medium'),
+(3, 'Received incorrect product. Need assistance for return and refund.', 'Resolved', 'High'),
+(4, 'Order status not updating after 3 days. Please check.', 'Open', 'Low'),
+(5, 'Payment failed but amount was deducted. Requesting refund.', 'Closed', 'Critical'),
+(1, 'The delivery was delayed. Requesting compensation.', 'Resolved', 'Low'),
+(2, 'Issue with accessing previous orders in account history.', 'Open', 'Medium'),
+(3, 'Facing issues while applying the discount code.', 'In Progress', 'Medium'),
+(4, 'Need assistance with warranty claim for purchased item.', 'Open', 'High'),
+(5, 'Product not as described. Need help with return.', 'Resolved', 'Medium');
+
+-- View SUPPORT_TICKETS table
+SELECT * FROM support_tickets;
+
+
+-- ------------------------------------------------------------------------------
+-- 								Table 22 : FEEDBACK								|
+-- ------------------------------------------------------------------------------
+
+/*
+SUPPORT: The purpose of the feedback table is to collect and store customer opinions or reviews about products or services.
+*/
+
+-- Create FEEDBACK table
+CREATE TABLE feedback (
+    feedback_id INT AUTO_INCREMENT PRIMARY KEY,           		-- Unique identifier for each feedback entry
+    customer_id INT NOT NULL,                             		-- Foreign key referencing customers table
+    rating INT CHECK (rating BETWEEN 1 AND 5),            		-- Rating out of 5
+    comments TEXT,                                        		-- Optional customer comments
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,     		-- Timestamp when feedback was submitted
+    FOREIGN KEY (customer_id) REFERENCES customers(customer_id) 
+        ON DELETE CASCADE                                 		-- Ensures feedback is removed if a customer is deleted
+);
+
+-- Insert data into feedback table
+INSERT INTO feedback (customer_id, rating, comments) 
+VALUES
+(1, 5, 'Excellent service! The product arrived on time and in perfect condition.'),
+(2, 4, 'Great experience overall, but shipping was slightly delayed.'),
+(3, 3, 'The product quality was decent, but the packaging could be improved.'),
+(4, 5, 'Loved the experience! Will shop here again.'),
+(5, 2, 'The product was not as described, but customer support resolved the issue.'),
+(6, 4, 'Good service, but there’s room for improvement in the delivery process.'),
+(7, 5, 'Fantastic! Everything was smooth from start to finish.'),
+(8, 1, 'Very disappointed with the product. Returning it soon.'),
+(9, 3, 'Average experience. The product is okay for the price.'),
+(10, 5, 'Absolutely amazing! Highly recommend this store.');
+
+-- View FEEDBACK data of user
+SELECT * FROM feedback;
+
+-- ------------------------------------------------------------------------------
+-- 								Table 23 : ACTIVITY_LOG							|
+-- ------------------------------------------------------------------------------
+
+/*
+PURPOSE: The purpose of the activity_log table is to track and record user actions or system activities for monitoring 
+and auditing purposes.
+*/
+
+-- Create ACTIVITY_LOG table
+CREATE TABLE activity_log (
+    log_id INT AUTO_INCREMENT PRIMARY KEY,                      		-- Unique identifier for each log entry
+    user_id INT NOT NULL,                                       		-- ID of the user performing the activity
+    activity_type VARCHAR(100) NOT NULL,                       			-- Type of activity (e.g., Login, Update, Delete)
+    activity_description TEXT,                                 			-- Detailed description of the activity
+    activity_timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,    			-- Timestamp of the activity
+    ip_address VARCHAR(50),                                    			-- IP address of the user
+    device_type VARCHAR(100),                                  			-- Device used (e.g., Desktop, Mobile)
+    location VARCHAR(100),                                     			-- Physical location (e.g., city or region) if tracked
+    success_status ENUM('Success', 'Failure') DEFAULT 'Success', 		-- Status of the activity
+    error_message TEXT,                                        			-- Error message in case of failure
+    FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE 	-- Links to the Users table
+);
+
+-- Insert data into ACTIVITY_LOG table
+INSERT INTO activity_log (user_id, activity_type, activity_description, ip_address, device_type, location, success_status) 
+VALUES
+(1, 'Login', 'User logged into the system', '192.168.1.1', 'Desktop', 'New York, USA', 'Success'),
+(2, 'Update', 'Updated product details for Apple iPhone 13', '192.168.1.2', 'Mobile', 'Los Angeles, USA', 'Success'),
+(3, 'Login', 'User logged into the system', '192.168.1.3', 'Tablet', 'San Francisco, USA', 'Success'),
+(4, 'Delete', 'Deleted an expired product entry', '192.168.1.4', 'Desktop', 'Chicago, USA', 'Success'),
+(5, 'Update', 'Changed inventory level for Sony Wireless Headphones', '192.168.1.5', 'Mobile', 'Dallas, USA', 'Success'),
+(6, 'Login', 'User attempted login with incorrect credentials', '192.168.1.6', 'Laptop', 'Miami, USA', 'Failure'),
+(7, 'Login', 'User logged into the system', '192.168.1.7', 'Mobile', 'Austin, USA', 'Success'),
+(8, 'Update', 'Updated shipping address for order ID 12345', '192.168.1.8', 'Desktop', 'Houston, USA', 'Success'),
+(9, 'Logout', 'User logged out of the system', '192.168.1.9', 'Tablet', 'Seattle, USA', 'Success'),
+(10, 'Login', 'User logged into the system', '192.168.1.10', 'Mobile', 'Denver, USA', 'Success');
+
+-- View ACTIVITY_LOG data
+SELECT * FROM activity_log;
+
+
+-- ------------------------------------------------------------------------------
+-- 								Table 24 : USER_ROLES							|
+-- ------------------------------------------------------------------------------
+
+/*
+PURPOSE: The purpose of the user_roles table is to define and manage different roles or permissions assigned to users in the system, 
+helping control access levels.
+*/
+
+-- Create USER_ROLES table
+CREATE TABLE user_roles (
+    role_id INT AUTO_INCREMENT PRIMARY KEY,                        				-- Unique identifier for the role
+    role_name VARCHAR(100) NOT NULL,                               				-- Name of the role (e.g., Admin, Manager, User)
+    role_description TEXT,                                         				-- Description of the role
+    permissions TEXT,                                              				-- List of permissions assigned to the role (e.g., 'Read, Write, Update')
+    is_active BOOLEAN DEFAULT TRUE,                                 			-- Indicates if the role is active
+    assigned_by INT,                                               				-- User ID who assigned the role
+    assigned_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                			-- Timestamp when the role was assigned
+    valid_from TIMESTAMP,                                          				-- Start date for when the role is valid
+    valid_until TIMESTAMP,                                         				-- End date for when the role expires
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,                				-- Timestamp for when the role was created
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP 	-- Timestamp for when the role was last updated
+);
+
+-- Insert data into USER_ROLES table
+INSERT INTO user_roles (role_name, role_description, permissions, is_active, assigned_by, assigned_at, valid_from, valid_until) 
+VALUES
+('Admin', 'Administrator with full access to all system features.', 'Read, Write, Update, Delete', TRUE, 1, '2025-01-01 09:00:00', '2025-01-01 00:00:00', '2025-12-31 23:59:59'),
+('Manager', 'Manager with limited access to manage users and monitor operations.', 'Read, Update, Approve', TRUE, 2, '2025-01-05 09:30:00', '2025-01-01 00:00:00', '2025-12-31 23:59:59'),
+('Customer', 'General user with access to view and place orders.', 'Read, Place Orders', TRUE, 3, '2025-01-10 10:00:00', '2025-01-01 00:00:00', '2025-12-31 23:59:59'),
+('Support', 'Support staff with access to customer service features.', 'Read, Assist Customers', TRUE, 4, '2025-01-15 11:00:00', '2025-01-01 00:00:00', '2025-12-31 23:59:59'),
+('Guest', 'Guest user with limited access, can view products.', 'Read', TRUE, NULL, '2025-01-20 12:00:00', '2025-01-01 00:00:00', '2025-12-31 23:59:59'),
+('Warehouse Manager', 'Manager overseeing warehouse operations and stock management.', 'Read, Update, Stock Management', TRUE, 2, '2025-01-25 09:00:00', '2025-01-01 00:00:00', '2025-12-31 23:59:59'),
+('Product Manager', 'Manager responsible for product listing and categorization.', 'Read, Write, Update Products', TRUE, 2, '2025-02-01 10:00:00', '2025-01-01 00:00:00', '2025-12-31 23:59:59'),
+('Shipping Clerk', 'Employee responsible for managing shipment details and orders.', 'Read, Update, Ship Orders', TRUE, 5, '2025-02-05 11:00:00', '2025-01-01 00:00:00', '2025-12-31 23:59:59'),
+('HR', 'Human resources role responsible for managing employee information.', 'Read, Update, Manage Employees', TRUE, 6, '2025-02-10 08:30:00', '2025-01-01 00:00:00', '2025-12-31 23:59:59'),
+('Analytics', 'Data analyst role with read-only access to sales and operations data.', 'Read, Analyze Reports', TRUE, 7, '2025-02-15 14:00:00', '2025-01-01 00:00:00', '2025-12-31 23:59:59');
+
+
+-- ------------------------------------------------------------------------------
+-- 								Table 25 : BRANDS								|
+-- ------------------------------------------------------------------------------
+
+/*
+PURPOSE: The purpose of the brands table is to store information about different product brands, including 
+their names and other relevant details.
+*/
+
+-- Create table BRANDS table
+CREATE TABLE brands (
+    brand_id INT AUTO_INCREMENT PRIMARY KEY,           -- Unique identifier for each brand
+    brand_name VARCHAR(255) NOT NULL,                  -- Name of the brand
+    country_of_origin VARCHAR(100),                    -- Country where the brand originated
+    established_year INT,                              -- Year the brand was established
+    status ENUM('Active', 'Inactive') NOT NULL,        -- Whether the brand is active or not
+    website VARCHAR(255),                              -- Official website of the brand
+    headquarters_location VARCHAR(255),                -- Location of the brand’s headquarters
+    number_of_employees INT,                           -- Number of employees in the brand’s company
+    revenue DECIMAL(15, 2),                            -- Revenue of the brand (in millions/billions)
+    product_categories TEXT,                           -- Categories of products the brand offers (e.g., 'Electronics, Wearables')
+    ceo_name VARCHAR(255),                             -- Name of the CEO of the brand
+    is_public BOOLEAN DEFAULT TRUE,                    -- Whether the brand is publicly traded
+    logo_image_url VARCHAR(255)                        -- URL link to the brand’s logo image
+);
+
+-- Insert data into BRANDS table
+INSERT INTO brands (brand_name, country_of_origin, established_year, status, website, headquarters_location, number_of_employees, revenue, product_categories, ceo_name, is_public, logo_image_url)
+VALUES
+('Apple', 'USA', 1976, 'Active', 'https://www.apple.com', 'Cupertino, CA', 147000, 274515000000, 'Electronics, Wearables', 'Tim Cook', TRUE, 'https://www.apple.com/ac/structured-data/images/knowledge_graph_logo.png'),
+('Samsung', 'South Korea', 1938, 'Active', 'https://www.samsung.com', 'Seoul, South Korea', 320000, 211937000000, 'Electronics, Appliances, Wearables', 'Kim Ki Nam', TRUE, 'https://www.samsung.com/etc/designs/samsung/global/common/images/samsung-logo.png'),
+('Nike', 'USA', 1964, 'Active', 'https://www.nike.com', 'Beaverton, OR', 75000, 44364000000, 'Apparel, Footwear', 'John Donahoe', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/a/a6/Logo_of_Nike_2011.svg'),
+('Sony', 'Japan', 1946, 'Active', 'https://www.sony.com', 'Tokyo, Japan', 110000, 82467000000, 'Electronics, Entertainment', 'Kenichiro Yoshida', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/a/a2/Sony_Logo.svg'),
+('Dell', 'USA', 1984, 'Active', 'https://www.dell.com', 'Round Rock, TX', 165000, 94266000000, 'Electronics, Computers', 'Michael Dell', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/4/47/Dell_Logo_2016.png'),
+('Toshiba', 'Japan', 1875, 'Inactive', 'https://www.toshiba.com', 'Tokyo, Japan', 140000, 37000000000, 'Electronics, Appliances', 'Nobuaki Kurumatani', FALSE, 'https://upload.wikimedia.org/wikipedia/commons/6/6a/Toshiba_logo.svg'),
+('Bose', 'USA', 1964, 'Active', 'https://www.bose.com', 'Framingham, MA', 8000, 4000000000, 'Electronics, Audio', 'Philippe Kahn', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/0/0e/Bose_logo.svg'),
+('Instant Pot', 'Canada', 2009, 'Active', 'https://www.instantpot.com', 'Ottawa, Canada', 150, 1500000000, 'Home Appliances', 'Robert Wang', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/2/2b/Instant_Pot_Logo.png'),
+('HP', 'USA', 1939, 'Active', 'https://www.hp.com', 'Palo Alto, CA', 55000, 63000000000, 'Electronics, Printers', 'Enrique Lores', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/0/0e/HP_logo_2012.png'),
+('LG Electronics', 'South Korea', 1958, 'Active', 'https://www.lg.com', 'Seoul, South Korea', 75000, 55540000000, 'Electronics, Appliances', 'Koo Kwang-mo', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/6/63/LG_logo_%282016%29.svg'),
+('Microsoft', 'USA', 1975, 'Active', 'https://www.microsoft.com', 'Redmond, WA', 181000, 168000000000, 'Software, Electronics', 'Satya Nadella', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/a/a3/Microsoft_logo_%282012%29.svg'),
+('Google', 'USA', 1998, 'Active', 'https://www.google.com', 'Mountain View, CA', 156000, 182527000000, 'Technology, Software', 'Sundar Pichai', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/4/42/Google_2015_logo.svg'),
+('Tesla', 'USA', 2003, 'Active', 'https://www.tesla.com', 'Palo Alto, CA', 48016, 31900000000, 'Automotive, Solar Energy', 'Elon Musk', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/e/e8/Tesla_logo.png'),
+('Amazon', 'USA', 1994, 'Active', 'https://www.amazon.com', 'Seattle, WA', 798000, 469800000000, 'E-commerce, Cloud Computing', 'Andy Jassy', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/a/a9/Amazon_logo.svg'),
+('Intel', 'USA', 1968, 'Active', 'https://www.intel.com', 'Santa Clara, CA', 110600, 77900000000, 'Semiconductors', 'Pat Gelsinger', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/d/d7/Intel_logo_2006.svg'),
+('Coca-Cola', 'USA', 1892, 'Active', 'https://www.coca-cola.com', 'Atlanta, GA', 86000, 37400000000, 'Beverages', 'James Quincey', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/4/46/Coca-Cola_logo.png'),
+('PepsiCo', 'USA', 1965, 'Active', 'https://www.pepsico.com', 'Purchase, NY', 267000, 71100000000, 'Beverages, Snacks', 'Ramon Laguarta', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/4/46/Pepsi_logo_2014.png'),
+('Adidas', 'Germany', 1949, 'Active', 'https://www.adidas.com', 'Herzogenaurach, Germany', 59000, 23500000000, 'Apparel, Footwear', 'Kasper Rørsted', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/2/2f/Adidas_Logo_2011.svg'),
+('BMW', 'Germany', 1916, 'Active', 'https://www.bmw.com', 'Munich, Germany', 133000, 104000000000, 'Automotive', 'Oliver Zipse', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/4/44/BMW.svg'),
+('Audi', 'Germany', 1909, 'Active', 'https://www.audi.com', 'Ingolstadt, Germany', 91000, 58000000000, 'Automotive', 'Markus Duesmann', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/2/2d/Audi_logo_%282019%29.svg'),
+('Ford', 'USA', 1903, 'Active', 'https://www.ford.com', 'Dearborn, MI', 190000, 158000000000, 'Automotive', 'Jim Farley', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/5/54/Ford_logo_2017.svg'),
+('Toyota', 'Japan', 1937, 'Active', 'https://www.toyota.com', 'Toyota City, Japan', 360000, 275000000000, 'Automotive', 'Akio Toyoda', TRUE, 'https://upload.wikimedia.org/wikipedia/commons/9/90/Toyota_logo.svg');
+
+
+-- View BRAND data
+SELECT * FROM brands;
 
 
 
