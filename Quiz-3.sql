@@ -123,7 +123,7 @@ INSERT INTO Instructors (FirstName, LastName, Email, Phone, Department, HireDate
 
 -- Students (FirstName, LastName, DateOfBirth, Email, Phone, Address, EnrollmentDate, Major, GPA, Status)
 -- ----------------------------------------------------------
--- 							SELECT							|
+-- 			SELECT				    |
 -- ----------------------------------------------------------
 -- SELECT student names and their courses status
 SELECT CONCAT(firstName," " , lastName), status from students;
@@ -142,22 +142,9 @@ SELECT firstName, status FROM students WHERE status = 'Pending';
 
 
 -- ----------------------------------------------------------
--- 							ALTER							|
+-- 			ALTER				    |
 -- ----------------------------------------------------------
 
-/* CREATE TABLE Instructors (
-    InstructorID INT AUTO_INCREMENT PRIMARY KEY,
-    FirstName VARCHAR(50) NOT NULL,
-    LastName VARCHAR(50) NOT NULL,
-    Email VARCHAR(100) UNIQUE NOT NULL,
-    Phone VARCHAR(15),
-    Department VARCHAR(100),
-    HireDate DATE NOT NULL,
-    OfficeLocation VARCHAR(100),
-    Salary DECIMAL(10, 2),
-    CoursesTaught TEXT,
-    Status ENUM('Active', 'Inactive') DEFAULT 'Active'
-); */
 -- Change the name of the instructors table to employees
 ALTER TABLE instructors
 RENAME TO employees; 
@@ -184,7 +171,7 @@ ADD COLUMN courseId INT;
 
 
 -- ----------------------------------------------------------
--- 							UPDATE							|
+-- 			UPDATE				    |
 -- ----------------------------------------------------------
 
 -- Update the course name for few subjects
@@ -224,7 +211,7 @@ WHERE studentId BETWEEN 1 AND 20;
 
 
 -- ----------------------------------------------------------
--- 						ADD OR DROP constraints				|
+-- 		ADD OR DROP constraints			    |
 -- ----------------------------------------------------------
 
 
@@ -234,7 +221,7 @@ ADD CONSTRAINT fk_course FOREIGN KEY (courseId) REFERENCES courses(courseId);
 
 
 -- ----------------------------------------------------------
--- 							OPERATORS						|
+-- 			OPERATORS			    |
 -- ----------------------------------------------------------
 
 -- See each department has how many faculties present
@@ -253,7 +240,7 @@ SELECT CONCAT(firstName, " ", lastName) AS student_name, GPA FROM students WHERE
 SELECT AVG(GPA) AS average_gpa FROM students;
 
 -- ----------------------------------------------------------
--- 							FUNCTIONS						|
+-- 			FUNCTIONS			    |
 -- ----------------------------------------------------------
 
 -- Retrieve all student names in uppercase
@@ -273,7 +260,7 @@ SELECT MAX(course_fee) FROM Courses;
 
 
 -- ----------------------------------------------------------
--- 							JOINS							|
+-- 			JOINS				    |
 -- ----------------------------------------------------------
 
 -- Get student names along with their course names
@@ -304,14 +291,31 @@ JOIN Students B ON A.enrollmentDate = B.enrollmentDate AND A.student_id <> B.stu
 -- Get all courses and enrolled student names (if any)
 SELECT Students.firstName, Courses.courseName
 FROM Students
-RIGHT JOIN Courses ON Students.course_id = Courses.course_id;
+RIGHT JOIN Courses ON Students.courseId = Courses.courseId;
 
 -- ----------------------------------------------------------
--- 							SUB-QUERIES						|
+-- 				SUB-QUERIES		    |
 -- ----------------------------------------------------------
 
-SELECT * FROM employees
-WHERE instructorId = (SELECT instructorId FROM employees WHERE salary = 45000.00);
+SELECT * FROM courses
+WHERE instructorId = (SELECT instructorId FROM empl WHERE salary = 45000.00);
+
+-- ----------------------------------------------------------
+-- 				DELETE		            |
+-- ----------------------------------------------------------
+
+-- Delete a partcular course 
+DELETE FROM courses
+WHERE courseId = 2;
+
+-- Delete a student
+DELETE FROM student
+WHERE firstName =  "Alice" AND major = 'Computer Science';
+
+-- Delete an employee
+DELETE FROM employees
+WHERE employeeId = 5;
+
 
 
 
